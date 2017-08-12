@@ -1,0 +1,24 @@
+﻿<div class="container">
+		<div class="row justify-content-center">
+			<h4 class="header">gift<span style="color: red;">plush.</span></h4>
+		</div>
+		<div class="row justify-content-center main">
+			<div class="card card-custom">
+				<div class="card-block card-block-custom">
+					<h4 class="card-title card-title-custom">Login to your dashboard</h4>
+					<span class="card-subtitle card-subtitle-custom">Giftplush makes it easy to purchase gift vouchers 	from your favorite retailers.</span>
+					<form action="#" #loginForm="ngForm" (ngSubmit)="login(loginForm)" class="form-custom">
+						<div class="form-group">
+							<label for="email" class="label-custom">Email address</label>
+							<input type="email" name="username" [(ngModel)]="username" class="form-control form-control-custom" required>
+
+							<label for="password" class="label-custom">Password</label>
+							<input type="password" name="password" [(ngModel)]="password" class="form-control form-control-custom" required>
+
+							<button class="btn btn-primary btn-custom" [disabled]="!loginForm.form.valid || loading"><i *ngIf="loading" class="spinner"></i> Login to your dashboard</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>

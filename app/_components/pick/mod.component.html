@@ -1,0 +1,46 @@
+<div class="ModalPage align-self-center">
+    
+    <div class="row">
+      <div class="col-md-4 col-sm-4 col-xs-4">
+        <img class="img-fluid" src="{{merchant.profile_img}}" alt="Burger King">
+      </div>
+      <div class="col-md-8 col-sm-8 col-xs-8">
+        <p>Available to be redeemed on {{merchant.company}} only. This gift card can be used towards millions of items on {{merchant.company}}. This gift voucher is sent in Naira</p>
+      </div>
+    </div>
+
+    <p class="ModalBrandName">{{merchant.company}} Gift Voucher</p>
+
+    <form (ngSubmit)="saveTransaction(modForm)" #modForm="ngForm">
+
+      <input type="hidden" name="company" #company [(ngModel)]="merchant.id" />
+      <input type="hidden" name="merchantName" #merchantName [(ngModel)]="merchant.company" />
+      <input type="hidden" name="merchantProfileImg" #merchantProfileImg [(ngModel)]="merchant.profile_img" />
+
+      <div class="ModalBoxInfo"> 
+        <h6>Location Information</h6>
+        <p>Retailer's Main Address - <span class="BrandAddress">{{merchant.address}}</span></p>
+        <p>Redemption Location closest to the recipient - 
+          <select name="address" class="custom-select" [(ngModel)]="merchant.address">
+            <option [value]="merchant.address">{{merchant.address}}</option>
+          </select>
+        </p>
+      </div>
+
+      <div class="ModalBoxInfo">
+        
+          <p>Enter Voucher Amount - <input name="price" [(ngModel)]="merchant.min" type="number" class="form-control w-45" aria-describedby="otherHelp" placeholder="Enter Voucher Amount You Wish To Buy"></p>
+          <div class="col-sm-12 col-md-12">
+            <button type="submit" class="btn btn-ModalBox" [disabled]="!modForm.form.valid || loading === true"><i *ngIf="loading" class="fa fa-spinner fa-pulse" ></i> Select Voucher</button>
+            <a routerLink="/pick" class="btn btn-secondary">Cancel</a>
+          </div>
+
+      </div>
+
+    </form>
+
+    <div class="ModalBoxInfo"> 
+      <p class="footerInfo">Available to be redeemed on {{merchant.company}} only. This gift card can be used towards millions of items on {{merchant.company}}. This gift voucher is sent in Naira</p>
+    </div>
+
+  </div>

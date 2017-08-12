@@ -1,0 +1,130 @@
+<div class="row row-offcanvas row-offcanvas-left">
+
+  <div class="col-6 col-md-4 sidebar-offcanvas" id="sidebar">
+
+      <div class="sidebar-cent">
+
+        <p class="logo">giftplush.</p>
+
+        <div class="filter-list">
+          <p class="active">
+            Send Gifts
+          </p>
+          <p>
+            Create Wishlist
+          </p>
+          <p>
+            Redeem Gift Voucher
+          </p>
+          <p>
+            Swap Gift Voucher
+          </p>
+        </div>
+        <hr>
+
+        <div class="filter-list">
+          <p>
+            Dashboard
+          </p>
+          <p>
+            Wallet
+          </p>
+          <p>
+            Transaction History
+          </p>
+        </div>
+        <hr>
+
+        <div class="filter-list">
+          <p>
+            Support
+          </p>
+        </div>
+
+
+      </div>
+
+  </div><!--/span-->
+
+  <div class="col-12 col-md-8 right-box">
+
+    <p class="hidden-md-up">
+      <button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas">Toggle nav</button>
+    </p>
+
+    <h4 class="pageTit">Send Gift Vouchers</h4>
+
+    <div class="card">
+      <h4 class="card-header">
+        <span>1</span> Select Gift Vouchers
+      </h4>
+    </div>
+
+    <div class="card">
+      <h4 class="card-header">
+        <span>2</span> Select Recipients
+      </h4>
+    </div>
+
+    
+    <div class="card composeMessageBox">
+      <h4 class="card-header">
+        <span>3</span> Compose Message
+      </h4>
+      <form #composeMessageForm="ngForm" (ngSubmit)="next(composeMessageForm)">
+        <div class="card-block compose-message">
+          <div class="form-group">
+            <label for="messageSubject">Message Subject</label>
+            <input type="text" class="form-control w-75" [(ngModel)]="message.subject" name="messageSubject" id="messageSubject">
+          </div>
+          <div class="form-group">
+            <label for="messageBody">Message</label>
+            <textarea class="form-control w-75" [(ngModel)]="message.body" name="messageBody" id="messageBody" #message (keypress)="messageBody = message.value" cols="30" rows="5" maxlength="120">Hi 'Recipient's Name' enjoy your gift</textarea>
+            <small>{{messageBody | countdown: 120}}</small>
+          </div>
+          <div class="form-group">
+            <label for="sendersName">Sender's Name</label>
+            <input type="text" [(ngModel)]="message.sendersName" class="form-control w-75" name="sendersName" id="sendersName">
+          </div>
+          <div class="form-group row claim">
+            <label for="claimBefore" class="col-sm-2 col-form-label">Claim Before</label>
+            <input type="date" [(ngModel)]="message.claimBefore" class="form-control col-sm-4" name="claimBefore" id="claimBefore">
+          </div>
+          <div class="form-group row ml-1">
+            <label class="custom-control custom-checkbox col-sm-3 mt-2">
+              <input type="checkbox" [(ngModel)]="message.deliverLater" name="deliverLater" class="custom-control-input">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">Deliver Later</span>
+            </label>
+            <input type="date" [(ngModel)]="message.deliverLaterDate" class="form-control col-sm-3 mr-1" name="deliverLaterDate" id="deliverLaterDate" placeholder="dd/mm/yyyy">
+            <input type="time" [(ngModel)]="message.deliverLaterTime" class="form-control col-sm-2" name="deliverLaterTime" id="deliverLaterTime" placeholder="time (--:--:--)">
+            <span class="mt-2 ml-1 gmt">GMT</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="float-left">Click next to place your order</span>
+          <span class="float-right"> 
+            <button type="button" class="btn btn-link" (click)="back()">Back</button>
+            <button type="button" class="btn btn-ModalBox" [disabled]="!composeMessageForm.form.valid" (click)="next(composeMessageForm)">Next</button>
+          </span>
+        </div>
+      </form>
+    </div>
+
+    <div class="card">
+      <h4 class="card-header">
+        <span>4</span> Message Preview
+      </h4>
+    </div>
+
+    <div class="card">
+      <h4 class="card-header">
+        <span>5</span> Place Order
+      </h4>
+    </div>
+
+
+
+  </div><!--/span-->
+
+</div><!--/row-->

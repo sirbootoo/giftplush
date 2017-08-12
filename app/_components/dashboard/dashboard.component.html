@@ -1,0 +1,122 @@
+<div class="row row-offcanvas row-offcanvas-left">
+
+  <div class="col-6 col-md-4 sidebar-offcanvas" id="sidebar">
+
+      <div class="sidebar-cent">
+
+        <p class="logo">giftplush.</p>
+
+        <div class="filter-list">
+          <p> 
+            Send Gifts
+          </p>
+          <p>
+            Create Wishlist
+          </p>
+        </div>
+        <hr>
+
+        <div class="filter-list">
+          <p class="active">
+            Dashboard
+          </p>
+          <p>
+            Transaction History
+          </p>
+        </div>
+        <hr>
+
+        <div class="filter-list">
+          <p>
+            Support
+          </p>
+        </div>
+
+
+      </div>
+
+  </div><!--/span-->
+
+  <div class="col-12 col-md-8 right-box">
+
+    <p class="hidden-md-up">
+      <button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas">Toggle nav</button>
+    </p>
+
+    <div class="row" *ngIf="isMerchant">
+        <div class="col-md-6">
+            <div class="card" style="padding: 2em;">
+                <h5>Redeem Voucher</h5><br>
+                <div class="alert {{alertClass}}" *ngIf="alert">{{alerttxt}}</div>
+                <form #voucherForm="ngForm" (ngSubmit)="checkValidity(voucherForm)" *ngIf="check">
+                    <input type="text" class="form-control" name="voucher" [(ngModel)]="voucher" placeholder="Enter Voucher Code" required>
+                    <br>
+                    <button class="btn btn-success" [disabled]="!voucherForm.form.valid || loading">Check Validity</button>
+                </form>
+
+                <form #chargeForm="ngForm" (ngSubmit)="chargeVoucher(chargeForm)" *ngIf="charge">
+                    <input type="text" class="form-control" name="amount" [(ngModel)]="amount" placeholder="Enter Amount You Want To Charge" required>
+                    <input type="hidden" class="form-control" name="vouchId" [(ngModel)]="vouchId" value="{{vouchId}}" >
+                    <input type="hidden" class="form-control" name="balance" [(ngModel)]="balance" value="{{balance}}" >
+                    <br>
+                    <button class="btn btn-success" *ngIf="!check" (click)="goBack()">Back</button> <button class="btn btn-success" [disabled]="!chargeForm.form.valid || loading">Charge Voucher</button>
+                </form>
+
+                    <button class="btn btn-success" *ngIf="tranSuccess" (click)="goBack()">Redeem Voucher</button>
+
+            </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card"  style="padding: 2em;">
+            <b *ngIf="emptyTran">{{tableData}}</b>
+            <div *ngIf="!emptyTran">
+                <h2>Transactions</h2>
+                <table class="table table-responsive table-striped" style="border: 1px solid #ccc">
+                  <thead>
+                    <th>S/N</th>
+                    <th>Amount</th>
+                    <th>Date & Time</th>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let tabData of tableData">
+                      <td></td>
+                      <td>{{tabData.amount}}</td>
+                      <td>{{tabData.timestamp || tabData.datetime}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="isUser">
+        <div class="col-md-12">
+          <div class="card"  style="padding: 2em;">
+            <b *ngIf="emptyTran">{{tableData}}</b>
+            <div *ngIf="!emptyTran">
+                <h2>Transactions</h2>
+                <table class="table table-responsive table-striped">
+                  <thead>
+                    <th>S/N</th>
+                    <th>Amount</th>
+                    <th>Date & Time</th>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let tabData of tableData">
+                      <td></td>
+                      <td>Amount</td>
+                      <td>Date</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+          </div>
+        </div>
+    </div>
+
+
+
+  </div><!--/span-->
+
+</div><!--/row-->

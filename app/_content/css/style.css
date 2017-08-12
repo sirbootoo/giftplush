@@ -1,0 +1,83 @@
+body{
+	background-color: #FBFBFB;
+	font-family: 'GT Walsheim Pro', sans-serif;
+}
+
+.header{
+	margin-top: 40px;
+}
+.main{
+	margin-top: 40px;
+}
+
+.card-custom{
+	background: #FFFFFF;
+	height: auto;
+	width: 398px;
+	min-width: 200px;
+	border: none;
+	-webkit-transition: box-shadow .5s;
+	transition: box-shadow .5s;
+	transition-timing-function: ease;
+}
+
+.card-custom:hover, .card-custom:focus, .card-custom:active{
+	box-shadow: 0px 8px 8px rgba(0,0,0,.10);
+}
+
+.card-block-custom{
+	padding-top: 48px;
+	padding-left: 24px;
+	padding-right: 24px;
+	padding: 48px 24px;
+}
+
+.card-title-custom{
+	color: rgba(0,0,0,.87);
+	margin-bottom: 16px;
+}
+
+.card-subtitle-custom{
+	font-size: 14px;
+	font-weight: 400;
+	color: rgba(0,0,0,.54);
+	margin-bottom: 24px;
+}
+
+.form-custom{
+	margin-top: 24px;
+}
+
+.form-control-custom{
+	border-radius: 1px;
+	border-color: rgba(0,0,0,.12);
+	margin-bottom: 16px;
+}
+
+.form-control-custom:focus{
+	outline: rgba(0,0,0,.54);
+	border-color: rgba(0,0,0,.54);
+	transition: border-color .5s;
+	transition-timing-function: ease-in-out;
+}
+
+.label-custom{
+	font-size: 14px;
+	color: rgba(0,0,0,.54);
+	font-weight: 500;
+	margin-bottom: 8px;
+}
+
+.btn-custom{
+	margin-top: 8px;
+	border-radius: 100px;
+	background-color: hsla(182, 18%, 31%, .9);
+	border-color: transparent;
+}
+
+.btn-custom:hover,.btn-custom:focus,.btn-custom:visited,.btn-custom:active{
+	background-color: hsla(182, 18%, 31%, 1);
+	border-color: transparent;
+	color: #FFFFFF;
+}
+

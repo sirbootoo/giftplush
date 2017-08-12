@@ -1,0 +1,56 @@
+<div class="container">
+		<div class="row justify-content-center">
+			<h4 class="header">gift<span style="color: red;">plush.</span></h4>
+		</div>
+		<div class="row justify-content-center main">
+
+			<div class="card card-custom" *ngIf="merchant">
+				<div class="card-block card-block-custom">
+					<h4 class="card-title card-title-custom">Business registration</h4>
+					<span class="card-subtitle card-subtitle-custom">Giftplush makes it easy to purchase gift vouchers 	from your favorite retailers.  You got an account? <a routerLink="/login">Click Here To Login</a></span>
+					<form #signupForm="ngForm" (ngSubmit)="register(signupForm)" class="form-custom">
+						<div class="form-group">
+							<label for="businessName" class="label-custom">Business Name</label>
+							<input type="text" name="company" [(ngModel)]="company" class="form-control form-control-custom" required>
+
+							<label for="businessEmail" class="label-custom">Business Email</label>
+							<input type="email" name="email" [(ngModel)]="email" class="form-control form-control-custom" required>
+
+							<label for="password" class="label-custom">Password</label>
+							<input type="password" name="password" [(ngModel)]="password" class="form-control form-control-custom" required>
+
+							<input type="hidden" name="group_id" [(ngModel)]="group_id" value="3" />
+
+							<button class="btn btn-primary btn-custom" [disabled]="!signupForm.form.valid || loading"><i *ngIf="loading" class="spinner"></i> Register your dashboard</button>
+                            <!--<button class="btn btn-primary btn-custom" [disabled]="!signupForm.form.valid || loading" >Register your business</buton>-->
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div class="card card-custom" *ngIf="user">
+				<div class="card-block card-block-custom">
+					<h4 class="card-title card-title-custom">Registration</h4>
+					<span class="card-subtitle card-subtitle-custom">Giftplush makes it easy to purchase gift vouchers 	from your favorite retailers. You got an account? <a routerLink="/login">Click Here To Login</a></span>
+					<form #signupForm="ngForm" (ngSubmit)="register(signupForm)" class="form-custom">
+						<div class="form-group">
+
+							<label for="userEmail" class="label-custom">Email</label>
+							<input type="email" name="email" [(ngModel)]="email" class="form-control form-control-custom" required>
+
+							<label for="password" class="label-custom">Password</label>
+							<input type="password" name="password" [(ngModel)]="password" class="form-control form-control-custom" required>
+
+							<input type="hidden" name="group_id" [(ngModel)]="group_id" value="2" />
+
+							<button class="btn btn-primary btn-custom" [disabled]="!signupForm.form.valid || loading"><i *ngIf="loading" class="spinner"></i> Register your dashboard</button>
+                            <!--<button class="btn btn-primary btn-custom" [disabled]="!signupForm.form.valid || loading" >Register your business</buton>-->
+						
+						</div>
+					</form>
+				</div>
+			</div>
+
+
+		</div>
+	</div>
