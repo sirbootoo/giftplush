@@ -204,13 +204,16 @@ export class SelectVoucherComponent implements OnInit, OnDestroy, AfterViewInit 
         document.querySelector('div#hits').addEventListener('click', function(event) {
             let evnt: any= event.target;
             if ((evnt.tagName.toLowerCase() === 'img' && evnt.className === 'card-img-top img-fluid') || (evnt.tagName.toLowerCase() === 'p' && evnt.className === 'card-text') || (evnt.tagName.toLowerCase() === 'div' && evnt.className === 'card-block' )) {
-                this.router.navigate(["/selectrecipients"]);
+                
                 this.clo = evnt.closest(".acard").getAttribute('routerLink');
+
+                this.router.navigate([this.clo]);
+
             }
         });
 
 
-        this.router.navigate([this.clo]);
+        
 
 
 

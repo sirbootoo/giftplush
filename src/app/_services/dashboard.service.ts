@@ -8,7 +8,7 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class DashboardService {
 
-    base_url: string = 'http://localhost/white/api/';
+    base_url: string = 'https://api.giftplush.com/api/';
     currentUser: any = JSON.parse(localStorage.getItem('currentUser'));
 
 

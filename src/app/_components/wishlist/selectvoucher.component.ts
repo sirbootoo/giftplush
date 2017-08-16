@@ -1,6 +1,7 @@
 import { Component, Injectable, Inject, OnInit, OnDestroy, AfterViewInit, AfterContentInit ,ElementRef, Renderer } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { Meta, Title } from "@angular/platform-browser";
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { ProductService, PubSubService, AlgoliaService, WishlistService } from '../../_services/index';
 
@@ -35,7 +36,7 @@ export class WishlistSelectVoucherComponent implements OnInit, OnDestroy, AfterV
     clo:any;
     wishlistItems: any;
 
-    constructor( meta: Meta, title: Title,
+    constructor( meta: Meta, title: Title, private router:Router,
         private wishlistService: WishlistService,
         private productService: ProductService,
         private pubSubService: PubSubService,
@@ -210,6 +211,8 @@ export class WishlistSelectVoucherComponent implements OnInit, OnDestroy, AfterV
 
                         localStorage.setItem('wishlist', JSON.stringify(wshl));
 
+                        this.loadList();
+
                         console.log('wishlist: '+wshl);
 
                     }else{
@@ -217,6 +220,8 @@ export class WishlistSelectVoucherComponent implements OnInit, OnDestroy, AfterV
                         wshl.push(slc);
 
                         localStorage.setItem('wishlist', JSON.stringify(wshl));
+
+                        this.loadList();
 
                     }
 
@@ -236,12 +241,6 @@ export class WishlistSelectVoucherComponent implements OnInit, OnDestroy, AfterV
     ngAfterContentInit() {
     
   }
-
-    private loadMerchants() {
-        this.merchants = this.productService.getAllMerchants();
-
-        console.log(this.merchants);
-    }
 
     public selectVoucher(formData: any){
         if(this.btnList.length >= 5){
@@ -273,6 +272,10 @@ export class WishlistSelectVoucherComponent implements OnInit, OnDestroy, AfterV
 
         private loadList(){
             this.wishlistItems = this.wishlistService.getAll();
+        }
+
+        next(){
+            this.router.navigate(["/wishlist/customize"]);
         }
     
 
