@@ -1,111 +1,61 @@
-<style>
-  a .card{
-    color: #333 !important;
-    text-decoration: none !important;
-  }
-  a:hover{
-    text-decoration: none !important;
-  }
-</style>
-<div class="row row-offcanvas row-offcanvas-left">
 
-  <div class="col-6 col-md-4 sidebar-offcanvas" id="sidebar">
+  <h4 class="pageTit">Send Gift Vouchers</h4>
 
-      <div class="sidebar-cent">
-
-        <p class="logo">giftplush.</p>
-
-        <h4>Occasions</h4>
-        <div id="brands">
-          <i class="fa fa-spinner fa-pulse fa-lg fa-fw"></i>
-          <span class="sr-only">Loading...</span>
-        </div>
-        <hr>
-        <h4>Locations</h4>
-        <div id="location">
-          <i class="fa fa-spinner fa-pulse fa-lg fa-fw"></i>
-          <span class="sr-only">Loading...</span>
-        </div>
-        <hr>
-        <h4>Price</h4>
-        <div id="price">
-          <i class="fa fa-spinner fa-pulse fa-lg fa-fw"></i>
-          <span class="sr-only">Loading...</span>
-        </div>
-
-      </div>
-
-  </div><!--/span-->
-
-  <div class="col-12 col-md-8 right-box">
-
-    <p class="hidden-md-up">
-      <button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas">Toggle nav</button>
-    </p>
-
-    <h4 class="pageTit">Send Gift Vouchers</h4>
-
-    <div class="card">
-      <h4 class="card-header">
-        <span>1</span> Select Gift Vouchers
-      </h4>
-      <div class="card-block" [@slideUpDownAnimation]>
-        <div class="row" id="picksearch">
-          <div class="col-sm-12 col-md-12">
-            <div class="form-group">
-                <div class="icon-addon addon-lg"  style="z-index: 1 !important; text-align: center">
-                    <input type="text" placeholder="Search" class="form-control" id="searchInput" [(ngModel)]="query">
-                    <label for="searchInput" class="fa fa-search" rel="tooltip" title="searchInput"></label>
-                </div>
-            </div>
+  <div class="card">
+    <h4 class="card-header">
+      <span>1</span> Select Gift Vouchers
+    </h4>
+    <div class="card-block" [@slideUpDownAnimation]>
+      <div class="row" id="picksearch">
+        <div class="col-sm-12 col-md-12">
+          <div class="form-group">
+              <div class="icon-addon addon-lg"  style="z-index: 1 !important; text-align: center">
+                  <input type="text" placeholder="Search" class="form-control" id="searchInput">
+                  <label for="searchInput" class="fa fa-search" rel="tooltip" title="searchInput"></label>
+              </div>
           </div>
         </div>
+      </div>
 
-        <!-- List showing the merchants (brands) -->
+      <!-- List showing the merchants (brands) -->
 
-          <div class="" id="hits">
-            <i class="fa fa-spinner fa-pulse fa-lg fa-fw"></i>
-            <span class="sr-only">Loading...</span>
-        </div>
+        <div class="" id="hits">
+          <i class="fa fa-spinner fa-pulse fa-lg fa-fw"></i>
+          <span class="sr-only">Loading...</span>
+      </div>
 
-        <!-- End List showing the merchants (brands) -->
-        
+      <!-- End List showing the merchants (brands) -->
       
-      </div>
-      <div class="card-footer text-center">
-        <div id="pagination"></div>
-      </div>
+    
     </div>
-
-    <div class="card">
-      <h4 class="card-header">
-        <span>2</span> Select Recipients
-      </h4>
+    <div class="card-footer text-center">
+      <div id="pagination"></div>
     </div>
+  </div>
 
-    <div class="card">
-      <h4 class="card-header">
-        <span>3</span> Compose Message
-      </h4>
-    </div>
+  <div class="card">
+    <h4 class="card-header">
+      <span>2</span> Select Recipients
+    </h4>
+  </div>
 
-    <div class="card">
-      <h4 class="card-header">
-        <span>4</span> Message Preview
-      </h4>
-    </div>
+  <div class="card">
+    <h4 class="card-header">
+      <span>3</span> Compose Message
+    </h4>
+  </div>
 
-    <div class="card">
-      <h4 class="card-header">
-        <span>5</span> Place Order
-      </h4>
-    </div>
+  <div class="card">
+    <h4 class="card-header">
+      <span>4</span> Message Preview
+    </h4>
+  </div>
 
-
-
-  </div><!--/span-->
-
-</div><!--/row-->
+  <div class="card">
+    <h4 class="card-header">
+      <span>5</span> Place Order
+    </h4>
+  </div>
 
 <!-- View Modal Page Box-->
 <div class="viewModalPage justify-content-center">

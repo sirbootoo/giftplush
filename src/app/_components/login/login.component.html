@@ -6,8 +6,9 @@
 			<div class="card card-custom">
 				<div class="card-block card-block-custom">
 					<h4 class="card-title card-title-custom">Login to your dashboard</h4>
+					<div class="{{alertClass}}" *ngIf="alert">{{alert}}</div>
 					<span class="card-subtitle card-subtitle-custom">Giftplush makes it easy to purchase gift vouchers 	from your favorite retailers.</span>
-					<form action="#" #loginForm="ngForm" (ngSubmit)="login(loginForm)" class="form-custom">
+					<form action="#" #loginForm="ngForm" (ngSubmit)="signin(loginForm)" class="form-custom">
 						<div class="form-group">
 							<label for="email" class="label-custom">Email address</label>
 							<input type="email" name="username" [(ngModel)]="username" class="form-control form-control-custom" required>

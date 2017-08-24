@@ -7,8 +7,9 @@
 			<div class="card card-custom" *ngIf="merchant">
 				<div class="card-block card-block-custom">
 					<h4 class="card-title card-title-custom">Business registration</h4>
+					<div class="{{alertClass}}" *ngIf="alert">{{alert}}</div>
 					<span class="card-subtitle card-subtitle-custom">Giftplush makes it easy to purchase gift vouchers 	from your favorite retailers.  You got an account? <a routerLink="/login">Click Here To Login</a></span>
-					<form #signupForm="ngForm" (ngSubmit)="register(signupForm)" class="form-custom">
+					<form #signupForm="ngForm" (ngSubmit)="signup(signupForm)" class="form-custom">
 						<div class="form-group">
 							<label for="businessName" class="label-custom">Business Name</label>
 							<input type="text" name="company" [(ngModel)]="company" class="form-control form-control-custom" required>
@@ -32,7 +33,7 @@
 				<div class="card-block card-block-custom">
 					<h4 class="card-title card-title-custom">Registration</h4>
 					<span class="card-subtitle card-subtitle-custom">Giftplush makes it easy to purchase gift vouchers 	from your favorite retailers. You got an account? <a routerLink="/login">Click Here To Login</a></span>
-					<form #signupForm="ngForm" (ngSubmit)="register(signupForm)" class="form-custom">
+					<form #signupForm="ngForm" (ngSubmit)="signup(signupForm)" class="form-custom">
 						<div class="form-group">
 
 							<label for="userEmail" class="label-custom">Email</label>

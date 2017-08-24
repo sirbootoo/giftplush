@@ -1,13 +1,10 @@
 ﻿import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { HomeComponent, WishlistSelectVoucherComponent, WishlistComponent, 
-        ShareWishlistComponent, 
-        WishlistCustomisationComponent, 
-        WishlistPreviewComponent, ProductListComponent, ProductAddEditComponent,
-        SelectVoucherComponent, SelectRecipientsComponent, 
-        MessageComposeComponent, MessagePreviewComponent, 
-        ModComponent, PlaceOrderComponent, 
+
+import { FullLayoutComponent } from './_layouts/full-layout.component';
+
+import { HomeComponent, ProductListComponent, ProductAddEditComponent,
         LoginComponent, AlertComponent, SignupComponent, DashboardComponent, ActivationComponent } from './_components/index';
 
 import { AuthGuard } from './_guards/index';
@@ -26,37 +23,18 @@ const routes: Routes = [
         ]
     },
     {
-        path: 'pick',
-        component: SelectVoucherComponent,
+        path: 'd',
+        component: FullLayoutComponent,
         children: [
-            { path: 'mod/:id', component: ModComponent,
-                resolve: {
-                    merchant: ModResolver
-                }
+            {
+                path: 'pick',
+                loadChildren: './_components/pick/pick.module#PickModule'
             },
-            
+            { 
+                path: 'wishlist',
+                loadChildren: './_components/wishlist/wishlist.module#WishlistModule'
+            }
         ]
-    },
-    { path: 'selectrecipients', component: SelectRecipientsComponent },
-    { path: 'composemessage', component: MessageComposeComponent },
-    { path: 'messagepreview', component: MessagePreviewComponent,
-        resolve: {
-            info: MessagePreviewResolver
-        }
-    },
-    { path: 'placeorder', component: PlaceOrderComponent,
-        resolve: {
-            info: MessagePreviewResolver
-        }
-    },
-    
-    { path: 'wishlist', component: WishlistComponent, 
-        children: [
-            { path: 'customize', component: WishlistCustomisationComponent },
-            { path: 'preview', component: WishlistPreviewComponent },
-            { path: 'share', component: ShareWishlistComponent },
-            { path: 'index', component: WishlistSelectVoucherComponent }
-        ] 
     },
     { path: 'login', component: LoginComponent },
     { path: 'signup/:slug', component: SignupComponent,
@@ -82,18 +60,7 @@ export class AppRoutingModule { }
 export const routedComponents = [
     HomeComponent, 
 ProductListComponent, 
-ProductAddEditComponent, 
-SelectVoucherComponent, 
-SelectRecipientsComponent,
-ModComponent,
-MessageComposeComponent,
-MessagePreviewComponent,
-PlaceOrderComponent,
-WishlistComponent,
-WishlistSelectVoucherComponent,
-WishlistCustomisationComponent,
-WishlistPreviewComponent,
-ShareWishlistComponent,
+ProductAddEditComponent,
 LoginComponent,
 AlertComponent,
 SignupComponent,

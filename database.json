@@ -1,0 +1,67 @@
+{ 
+    "groups": {
+        "1": {"name":"admin","description":"Administrator"},
+        "2": {"name":"members","description":"General User"},
+        "3": {"name":"merchant","description":"Voucher Stores"},
+        "4": {"name":"submerchant","description":"Accounts under Main Merchant Account"}
+    },
+    "users": {
+        "1": {
+            "ip_address":"127.0.0.1","created_on":"1268889823","last_login":"1495110279",
+            "business_id": "1",
+            "group_id": "2"
+        }
+    },
+    "userInfo": {
+        "1": {
+            "user_id": "1",
+            "firstName":"Temidayo",
+            "lastName": "Ajisebutu",
+            "phoneNum": "08168661084",
+            "profileImg": ""
+        }
+    },
+    "businessInfo": {
+        "1": {
+            "user_id": "1",
+            "businessName": "BooToo Inc.",
+            "phoneNum": "08168661084",
+            "address": "Block 62 Flat 4, Iponri Estate",
+            "city": "Surulere",
+            "Lagos": "Lagos",
+            "documents": "",
+            "pictures": "",
+            "bankName": "UBA",
+            "bankAccountNumber": "2052940620",
+            "bankAccountName": "BooToo Inc",
+            "BVN": "28899383938292"
+        }
+    },
+    "vouchers": {
+        "1": {
+            "voucherCode": "GPH1234567",
+            "price": "10000",
+            "balance": "10000",
+            "user_id": "1",
+            "recipientName": "Winnie Ogah",
+            "recipientPhoneNumber": "07056674439",
+            "recipientEmail": "",
+            "business_id": "1",
+            "referenceNo": "",
+            "active": "1",
+            "anonymous": "1",
+            "swappable": "0",
+            "used": "1",
+            "date_created": "",
+            "expiryDate": ""
+        }
+    },
+    "voucherTransactions": {
+        "1": {
+            "voucher_id": "1",
+            "amount": "200",
+            "basiness_id": "1",
+            "timeStamp": ""
+        }
+    }
+}

@@ -1,134 +1,84 @@
-<div class="row row-offcanvas row-offcanvas-left">
+<div class="col-12 col-md-8 right-box">
 
-  <div class="col-6 col-md-4 sidebar-offcanvas" id="sidebar">
+  <p class="hidden-md-up">
+    <button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas">Toggle nav</button>
+  </p>
 
-      <div class="sidebar-cent">
+  <h4 class="pageTit">Send Gift Vouchers</h4>
 
-        <p class="logo">giftplush.</p>
+  <div class="card">
+    <h4 class="card-header">
+      <span>1</span> Select Gift Vouchers
+    </h4>
+  </div>
 
-        <div class="filter-list">
-          <p class="active">
-            Send Gifts
-          </p>
-          <p>
-            Create Wishlist
-          </p>
-          <p>
-            Redeem Gift Voucher
-          </p>
-          <p>
-            Swap Gift Voucher
-          </p>
+  <div class="card">
+    <h4 class="card-header">
+      <span>2</span> Select Recipients
+    </h4>
+  </div>
+
+  <div class="card composeMessageBox">
+
+    <h4 class="card-header">
+      <span>3</span> Compose Message
+    </h4>
+  </div>
+
+  <div class="card messagePreviewBox">
+    <h4 class="card-header">
+      <span>4</span> Message Preview
+    </h4>
+    <div class="card-block message-preview  justify-content-center">
+      <div class="messagePreview w-75 align-self-center">
+        <div class="miniMessagePreview">
+          <p>{{tran.messageBody}} - <b>{{tran.sendersName}}</b></p>
         </div>
-        <hr>
-
-        <div class="filter-list">
-          <p>
-            Dashboard
-          </p>
-          <p>
-            Wallet
-          </p>
-          <p>
-            Transaction History
-          </p>
-        </div>
-        <hr>
-
-        <div class="filter-list">
-          <p>
-            Support
-          </p>
-        </div>
-
-
-      </div>
-
-  </div><!--/span-->
-
-  <div class="col-12 col-md-8 right-box">
-
-    <p class="hidden-md-up">
-      <button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas">Toggle nav</button>
-    </p>
-
-    <h4 class="pageTit">Send Gift Vouchers</h4>
-
-    <div class="card">
-      <h4 class="card-header">
-        <span>1</span> Select Gift Vouchers
-      </h4>
-    </div>
-
-    <div class="card">
-      <h4 class="card-header">
-        <span>2</span> Select Recipients
-      </h4>
-    </div>
-
-    <div class="card composeMessageBox">
-
-      <h4 class="card-header">
-        <span>3</span> Compose Message
-      </h4>
-    </div>
-
-    <div class="card messagePreviewBox">
-      <h4 class="card-header">
-        <span>4</span> Message Preview
-      </h4>
-      <div class="card-block message-preview  justify-content-center">
-        <div class="messagePreview w-75 align-self-center">
-          <div class="miniMessagePreview">
-            <p>{{tran.messageBody}} - <b>{{tran.sendersName}}</b></p>
-          </div>
-          <div class="card mt-2">
-            <h5 class="card-header">You have been gifted a {{tran.merchantName}} gift voucher</h5>
-            <div class="card-block">
-              <p>This gift card can be used to redeem gifts from all {{tran.merchantName}} outlets nationwide. You can use this email to access your redemption code in the future. This voucher expires on 
-                <b>{{tran.claimBefore}}</b></p>
-              <div class="row">
-                <div class="col-md-6 col-sm-12 col-xs-12">
-                  <div class="row">
-                    <div class="col-6">
-                      <img class="img-fluid" src="{{tran.merchantProfileImg}}" alt="Burger King">
-                    </div>
-                    <div class="col-6">
-                      <h6>{{tran.merchantName}}.com</h6>
-                      <p class="MessagePreviewVoucherName">{{tran.merchantName}} Gift Voucher</p>
-                      <p class="MessagePreviewVoucherPrice">₦ {{tran.price}}</p>
-                    </div>
+        <div class="card mt-2">
+          <h5 class="card-header">You have been gifted a {{tran.merchantName}} gift voucher</h5>
+          <div class="card-block">
+            <p>This gift card can be used to redeem gifts from all {{tran.merchantName}} outlets nationwide. You can use this email to access your redemption code in the future. This voucher expires on 
+              <b>{{tran.claimBefore}}</b></p>
+            <div class="row">
+              <div class="col-md-6 col-sm-12 col-xs-12">
+                <div class="row">
+                  <div class="col-6">
+                    <img class="img-fluid" src="{{tran.merchantProfileImg}}" alt="Burger King">
+                  </div>
+                  <div class="col-6">
+                    <h6>{{tran.merchantName}}.com</h6>
+                    <p class="MessagePreviewVoucherName">{{tran.merchantName}} Gift Voucher</p>
+                    <p class="MessagePreviewVoucherPrice">₦ {{tran.price}}</p>
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <p class="voucherCodeTitle">Voucher code</p>
-                  <p class="voucherCode">(Custom voucher code)</p>
-                  <p class="retailerTitle">Retailer closest to you</p>
-                  <p class="retailerAddress">{{tran.address}}</p>
-                </div>
               </div>
-              <div class="float-right"> 
-                <button type="button" class="btn btn-link" (click)="back()">Back</button>
-                <button type="button" class="btn btn-ModalBox" (click)="next()">Next</button>
+              <div class="col-md-6">
+                <p class="voucherCodeTitle">Voucher code</p>
+                <p class="voucherCode">(Custom voucher code)</p>
+                <p class="retailerTitle">Retailer closest to you</p>
+                <p class="retailerAddress">{{tran.address}}</p>
               </div>
             </div>
-            <div class="card-footer">
-              <p class="float-right">Powered By <span class="logo">giftplush.</span></p>
+            <div class="float-right"> 
+              <button type="button" class="btn btn-link" (click)="back()">Back</button>
+              <button type="button" class="btn btn-ModalBox" (click)="next()">Next</button>
             </div>
+          </div>
+          <div class="card-footer">
+            <p class="float-right">Powered By <span class="logo">giftplush.</span></p>
           </div>
         </div>
       </div>
-
     </div>
 
-    <div class="card">
-      <h4 class="card-header">
-        <span>5</span> Place Order
-      </h4>
-    </div>
+  </div>
+
+  <div class="card">
+    <h4 class="card-header">
+      <span>5</span> Place Order
+    </h4>
+  </div>
 
 
 
-  </div><!--/span-->
-
-</div><!--/row-->
+</div><!--/span-->

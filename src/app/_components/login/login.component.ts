@@ -18,11 +18,13 @@ export class LoginComponent implements OnInit {
     returnUrl: string;
     username: any;
     password: any;
+    alert: any;
+    alertClass: any;
 
     constructor(meta: Meta, title: Title,
         private route: ActivatedRoute,
         private router: Router,
-        private authenticateService: AuthenticateService,
+        private authService: AuthenticateService,
         private alertService: AlertService) {
 
             title.setTitle('Login - Giftplush');
@@ -36,7 +38,7 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         // reset login status
-        this.authenticateService.logout();
+        this.authService.logout();
 
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -45,7 +47,7 @@ export class LoginComponent implements OnInit {
     login(loginForm:any) {
         this.loading = true;
         console.log("Username - "+loginForm.value.username+" Password - "+loginForm.value.password);
-        this.authenticateService.login(loginForm.value.username, loginForm.value.password)
+        this.authService.login(loginForm.value.username, loginForm.value.password)
             .subscribe(
                 data => {
                     this.alertService.success('Login Succesful');
@@ -58,4 +60,28 @@ export class LoginComponent implements OnInit {
                     console.log(error);
                 });
     }
+
+
+    signin(loginForm: any){
+        this.loading = true;
+        console.log("Username - "+loginForm.value.username+" Password - "+loginForm.value.password);
+        this.authService.emailLogin(loginForm.value.username, loginForm.value.password)
+        .then((user) => {
+            this.alert = user;
+            this.alertClass = 'alert alert-success';
+            this.authService.updateUserData(loginForm.value);
+            this.loading = false;
+        })
+        .catch(error => {
+            console.log(error); 
+            this.alert = error;
+            this.alertClass = 'alert alert-danger';
+            this.loading = false;
+        });
+    }
+
+
+
+
+
 }

@@ -19,6 +19,8 @@ export class SignupComponent {
     email: any;
     password: any;
     group_id: any;
+    alert: any;
+    alertClass: any;
  
     constructor(
         private route: ActivatedRoute,
@@ -46,11 +48,34 @@ export class SignupComponent {
 
             });
         }
+
+
+
+    // Firebase
+    signup(signupForm): void {
+        this.loading = true;
+        console.log(signupForm.value);
+        this.authService.emailSignUp(signupForm.value.email, signupForm.value.password, signupForm.value)
+        .then((user) => {
+            this.alert = user;
+            this.alertClass = 'alert alert-success';
+            this.authService.updateUserData(signupForm.value);
+            this.loading = false;
+        })
+        .catch(error => {
+            console.log(error); 
+            this.alert = error;
+            this.alertClass = 'alert alert-danger';
+            this.loading = false;
+        });
+    }
  
+
+    // Php
     register(signupForm: any) {
         this.loading = true;
         this.authService.signup(signupForm.value)
-            .subscribe(
+            .subscribe( 
                 data => {
                     console.log(data);
                     // set success message and pass true paramater to persist the message after redirecting to the login page

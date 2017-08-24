@@ -198,6 +198,14 @@ export class WishlistSelectVoucherComponent implements OnInit, OnDestroy, AfterV
 
                     var wshl = JSON.parse(localStorage.getItem('wishlist')) || [];
 
+                    var d1 = document.getElementById('lowerFiller');
+                    d1.insertAdjacentHTML('beforeend', `<div class="col-md-2 col-xs-2 col-sm-2">
+        <div class="card">
+          <img class="card-img-top img-fluid" src="`+slc.profile_img+`" alt="Card image cap">
+          <span class="brandBtn" (click)="remove(wishlistItem.merchantId)">Remove</span>
+        </div>
+      </div>`);
+
                     if(wshl.find(item => item.merchantId === slc.merchantId)){
 
                         for (var i = 0; i < wshl.length; i++) {

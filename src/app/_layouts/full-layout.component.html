@@ -1,0 +1,83 @@
+<div class="row row-offcanvas row-offcanvas-left">
+
+  <div class="col-6 col-md-4 sidebar-offcanvas" id="sidebar">
+
+      <div class="sidebar-cent" *ngIf="cate">
+
+        <p class="logo">giftplush.</p>
+
+        <h4>Occasions</h4>
+        <div id="brands">
+          <i class="fa fa-spinner fa-pulse fa-lg fa-fw"></i>
+          <span class="sr-only">Loading...</span>
+        </div>
+        <hr>
+        <h4>Locations</h4>
+        <div id="location">
+          <i class="fa fa-spinner fa-pulse fa-lg fa-fw"></i>
+          <span class="sr-only">Loading...</span>
+        </div>
+        <hr>
+        <h4>Price</h4>
+        <div id="price">
+          <i class="fa fa-spinner fa-pulse fa-lg fa-fw"></i>
+          <span class="sr-only">Loading...</span>
+        </div>
+
+
+      </div>
+
+      <div class="sidebar-cent" *ngIf="!cate">
+
+        <p class="logo">giftplush.</p>
+
+        <div class="filter-list">
+          <p class="active"> 
+            Send Gifts
+          </p>
+          <p>
+            Create Wishlist
+          </p>
+          <p>
+            Redeem Gift Voucher
+          </p>
+          <p>
+            Swap Gift Voucher
+          </p>
+        </div>
+        <hr>
+
+        <div class="filter-list">
+          <p>
+            Dashboard
+          </p>
+          <p>
+            Wallet
+          </p>
+          <p>
+            Transaction History
+          </p>
+        </div>
+        <hr>
+
+        <div class="filter-list">
+          <p>
+            Support
+          </p>
+        </div>
+
+
+      </div>
+      
+
+  </div><!--/span-->
+
+  <div class="col-12 col-md-8 right-box">
+    <p class="hidden-md-up">
+      <button type="button" class="btn btn-primary btn-sm" id="dataTog" data-toggle="offcanvas" appSideBarToogle>Toggle nav</button>
+    </p>
+    <router-outlet></router-outlet>
+  </div><!--/span-->
+
+
+</div><!--/row-->
