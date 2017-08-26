@@ -1,0 +1,798 @@
+ /* Voucher Buy Page */ 
+      html,
+      body {
+        height: 100% !important;
+        overflow-x: hidden;
+      }
+      .sidebar-offcanvas{
+        padding-top: 4em; 
+        color: white;
+        background: black;
+        display: flex;
+        justify-content: center;
+        padding-left: 40px;
+        padding-bottom: 40px; 
+        font-size: 12px;
+
+      }
+
+      #sidebar .active{
+        color: cyan;
+        font-weight: 600;
+      }
+
+      p.logo{
+        font-weight: bolder;
+        font-size: 2em;
+        margin-bottom: 1.8em;
+      }
+      .sidebar-offcanvas ul{
+        background: none !important;
+        list-style: none;
+      }
+
+      .sidebar-offcanvas h4{
+        text-transform: uppercase;
+        font-size: 16px;
+        margin-bottom: 1.5em;
+        font-weight: bolder;
+      }
+      .sidebar-cent{
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+      }
+
+      .sidebar-cent input{
+          margin-right: 20px;
+          margin-left: -40px;
+      }
+
+      .filter-list p, .filter-list label{
+        color: white;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+      
+      .right-box{
+        background: #ccc;
+        padding-top: 3em;
+        padding-left: 2em;
+        padding-right: 2em;
+      }
+      /*.pageTit{
+        margin-bottom: 0.5em;
+      }
+
+      .pageSubTitle{
+        margin-bottom: 1.5em;
+      }*/
+
+      .sidebar-offcanvas hr{
+        background: #ccc;
+        width: 100% !important;
+      }
+
+      .card-header{
+        background-color: #121d13;
+        color: white;
+        padding: 20px;
+        font-size: 18px;
+      }
+
+      a.card{
+        color: #333;
+        text-decoration: none;
+      }
+
+      .card{
+        margin-bottom: 10px;
+      }
+
+      .card-header span{
+        margin-right: 2em;
+      }
+
+
+      .card-footer{
+        background: white;
+        border: 0px;
+        font-size: 14px;
+        color: #ccc;
+      }
+
+      .card-text{
+        font-size: 0.8em;
+      }
+
+      .col-md-3 .card{
+        padding: 1em;
+      }
+
+      #picksearch{
+        margin-bottom: 15px;
+      }
+
+      #picksearchLabels{
+      }
+
+      label[for=searchstate], label[for=searchlga]{
+        font-size: 0.8em;
+        color: #ccc;
+      }
+      #picksearch .searchinput{
+        position: absolute !important;
+        bottom: 0px !important;
+        right: 15px !important;
+      }
+
+      .brandlist .card-block{
+        padding: 0px !important;
+        padding-top: 10px !important;
+      }
+
+      .brandlist .card{
+        border: 0px !important;
+        padding-bottom: 0.5em !important;
+      }
+
+      .prev-btn{
+        padding: 10px;
+        height: 55%;
+        position: absolute;
+        left: 0px;
+        color: #464a4c !important;
+        display: -webkit-flex;
+        display:         flex;
+        -webkit-align-items: center;
+                align-items: center;
+        -webkit-justify-content: center;
+          justify-content: center;
+          text-decoration: none !important;
+      }
+
+      .prev-btn:hover i, .next-btn:hover i{
+        color: #aaa;
+      }
+
+      .next-btn{
+        padding: 10px;
+        height: 55%;
+        position: absolute;
+        right: 0px;
+        color: #464a4c !important;
+        display: -webkit-flex;
+        display:         flex;
+        -webkit-align-items: center;
+                align-items: center;
+        -webkit-justify-content: center;
+          justify-content: center;
+          text-decoration: none !important;
+      }
+
+      .custom-select {
+        background: #fff url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBkPSJNMTYuMDAzIDE4LjYyNmw3LjA4MS03LjA4MUwyNSAxMy40NmwtOC45OTcgOC45OTgtOS4wMDMtOSAxLjkxNy0xLjkxNnoiLz48L3N2Zz4=') no-repeat right 0.75rem center;
+        background-size: 15px 20px;
+      }
+
+
+      @media (max-width: 768px){
+        .filter-list p{
+          font-size: .714em;
+        }
+        .sidebar-cent input{
+          margin-left: 0px;
+        }
+        .sidebar-cent{
+          width: 100%;
+        }
+        .sidebar-offcanvas{
+          height: 100%;
+        }
+        .ModalPage{
+          width: 100% !important;
+          height: 100% !important;
+          max-height: 600px !important;
+        }
+        #otherAmount{
+          width: 65% !important;
+        }
+      }
+
+      @media (max-width: 320px){
+        .sidebar-offcanvas{
+          width: 60% !important; 
+          padding-top: 2em;
+        }
+        .filter-list p{
+          font-size: .714em;
+        }
+        html,body{
+          overflow-x: scroll;
+        }
+      }
+
+      .custom-control-input:checked~.custom-control-indicator {
+          color: #fff;
+          background-color: #5cb85c;
+      }
+
+      .custom-control-indicator{
+        background: rgba(0,0,0,0);
+        border: 2px solid #5cb85c;
+      }
+
+      .filter-list .custom-control.custom-checkbox{
+        margin-left: -2em !important;
+      }
+
+      .filter-list .custom-control-indicator{
+        margin-left: -1em;
+        margin-top: -0.3em;
+      }
+
+      .gmt{
+        color: #bbb;
+        font-size: 1em;
+      }
+
+
+
+      /*View Modal Page Box*/
+
+      .viewModalPage{
+        display: flex;
+      }
+
+      .ModalPage{
+        background: white;
+        padding: 2em;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        position: relative;
+        float: left;
+        width: 50%;
+        height: 600px;
+        max-height: 600px;
+        overflow-y: auto;   
+        z-index: 1000;
+      }
+
+      .ModalBrandName{
+        padding-top: 15px;
+        color: #bbb;
+      }
+
+      .ModalBoxInfo{
+        padding-top: 15px;
+        border-top: 1px solid #ccc;
+        margin-top: 1em;
+      }
+
+      .ModalBoxInfo h6{
+        margin-bottom: 1.5rem !important;
+      }
+
+      .ModalBoxInfo .btn{
+        font-size: .95em;
+        cursor: pointer;
+      }
+
+      .BrandAddress{
+        margin-bottom: .5rem;
+        font-family: inherit;
+        font-weight: 500;
+        line-height: 1.1;
+        color: inherit;
+        font-size: 1rem;
+      }
+
+      .btn-ModalBox{
+        color: #fff;
+        background: #121d13;
+        border: 1px solid #121d13;
+        border-bottom: 3px solid rgba(21,21,21, 0.3);
+      }
+      .btn-ModalBox:focus{
+        border-bottom: 1px solid #121d13;
+      }
+
+      .ModalBoxInfo .btn-secondary{
+        border-bottom: 3px solid rgba(21,21,21, 0.3);
+        font-size: .6em !important;
+      }
+
+      .btn-ModalBox:hover{
+        background: rgba(18,29,19, 0.9);
+      }
+
+
+      .ModalBoxInfo input[type="radio"]{
+        display: none;
+      }
+
+      .ModalBoxInfo label{
+        border: 1px solid #ccc;
+        padding: .5rem .75rem !important;
+        font-size: .8rem;
+        background: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-right: 0.5em;
+      }
+
+      .ModalBoxInfo label:hover{
+        background: #ccc;
+        color: #fff;
+        transition: 0.5s;
+      }
+      .ModalBoxInfo input[type="radio"]:checked label{
+        background: #ccc;
+        color: #fff;
+      }
+      
+      #otherAmount {
+        width: 35%;
+        float: right;
+        margin-bottom: 1em;
+      }
+
+      .ModalBoxInfo .footerInfo{
+        font-size: .8em !important;
+        color: #bbb;
+      }
+
+      .viewModalPage ng-component{
+        display: flex;
+        justify-content: center;
+      }
+
+      .ModalBoxInfo .btn-ModalBox{
+        margin: 0px !important;
+      }
+
+      /*End View Modal Page Box*/
+
+
+      /*Delivery Details Styling*/
+      .delivery-details{
+        padding-left: 4.1rem;
+      }
+      .delivery-details .btn{
+        font-size: 0.7em;
+        cursor: pointer;
+      }
+      .deliveryMethodInfo{
+        color: cyan;
+        font-size: 0.8em;
+      }
+      .delivery-details .custom-control-indicator{
+        background: none;
+        border: 1px solid #5cb85c;
+      }
+      .delivery-details .custom-control-input:checked~.custom-control-indicator{
+        background: #5cb85c;
+        color: #fff !important;
+      }
+
+      .custom-control-indicator:hover, .custom-control-indicator:focus{
+        background: #5cb85c;
+      }
+
+      .giftorderLink{
+        margin-top: 1em;
+      }
+      .giftorderLink i{
+        margin-right: .5rem;
+        color: #ccc;
+        font-weight: lighter;
+      }
+      .giftorderLink:hover i{
+        color: #464a4c;
+      }
+
+      .deliveryBox .card-footer{
+        padding: 1em !important;
+        border-top: 1px solid #ccc !important;
+        padding-left: 4.1rem !important;
+        color: #aaa;
+      }
+
+      .deliveryBox .card-footer .btn-link{
+        color: rgba(21,21,21, 1)
+      }
+
+      .cyan-text{
+        color: cyan;
+      }
+
+      /*End Delivery Details Styling*/
+
+      /* Compose Message Styling*/
+
+      .composeMessageBox .card-footer{
+        padding: 1em !important;
+        border-top: 1px solid #ccc !important;
+        padding-left: 4.1rem !important;
+        color: #aaa;
+      }
+
+      .card-footer .btn-link{
+        color: rgba(21,21,21, 1);
+      }
+
+      .compose-message{
+        padding-left: 4.1rem;
+      }
+
+      .compose-message .col-form-label{
+        margin-left: .2em;
+        margin-right: 1em;
+      }
+      .claim{
+        margin-top: 1.5em !important;
+        margin-bottom: 1.5em !important;
+      }
+
+      /*End Compose Message Styling*/
+
+      /*Message Preview*/
+
+      .message-preview{
+        display: flex;
+      }
+
+      .messagePreview{
+        background: rgba(236, 238, 239, 0.5);
+        padding: 2em;
+      }
+
+      .messagePreview .btn-link{
+        text-decoration: none;
+        color: #121d13;
+      }
+
+      .messagePreview .btn-ModalBox{
+        font-size: 0.8em;
+      }
+
+      .miniMessagePreview{
+        padding: 1em;
+        background: #fff;
+        border: 1px solid #ccc;
+      }
+
+      .miniMessagePreview p{
+        font-size: 0.8em;
+      }
+
+      .messagePreviewBox .card-footer{
+        color: #121d13;
+      }
+
+      .messagePreviewBox .card-footer .logo{
+        font-weight: bolder;
+        font-size: 1.5em;
+        margin-left: .3em !important;
+      }
+
+      .MessagePreviewVoucherName {
+        font-size: .76em;
+        color: #aaa;
+      }
+
+      .MessagePreviewVoucherPrice{
+        font-weight: bolder;
+        color: #0bc59c;
+      }
+
+      .voucherCodeTitle{
+        font-size: 0.8em;
+        font-weight: bold;
+        color: #ccc;
+        margin-bottom: .4em !important;
+      }
+      
+      .voucherCode{
+        font-size: 0.8em;
+        font-weight: bold;
+        margin-bottom: 1.4em;
+      }
+
+      .retailerTitle{
+        font-size: 0.8em;
+        margin-bottom: 0em !important;
+      }
+
+      .retailerAddress{
+        font-size: 0.7em;
+        font-weight: bold;
+        color: #0bc59c;
+      }
+
+      /*End Message Preview*/
+
+      /*Place Order*/
+
+      .place-order{
+        display: flex;
+      }
+
+      .placeOrder {
+        font-size: 0.8em;
+        font-weight: bold;
+      }
+
+      .placeOrder .float-right{
+        color: #0bc59c;
+        text-align: left;
+      }
+
+      .placeOrderTitle{
+        padding: 1em;
+        background: #ccc;
+        border: 1px solid #ccc;
+      }
+
+      .placeOrderFooter{
+        padding: 1em;
+        background: #ccc;
+        border: 1px solid #ccc;
+      }
+
+      .placeOrderBody{
+        padding: 1em;
+        border: 1px solid #ccc;
+      }
+
+      .placeOrderBody .left-side{
+        width: 30px;
+        max-width: 30px;
+      }
+
+      .placeOrderRow{
+        padding: 1em 0em;
+      }
+
+      .btn-link {
+        color: #121d13;
+        text-decoration: none;
+      }
+
+      .placeOrderBox .card-footer{
+        display: flex;
+      }
+
+      span.logo{
+        font-weight: bolder;
+        font-size: 1.5em;
+        margin-bottom: 1.8em;
+        color: #121d13;
+        margin-left: 0.4em;
+      }
+
+      /*End Place Order*/
+
+
+/* End Voucher Buy Page */
+
+
+/*Wishlist Page*/
+
+    /*Select Gift Voucher Page*/
+      .selectGiftVoucherBox .card-bottom{
+        padding: 2em;
+        padding-left: 2em;
+        background: #fff;
+        border-top: 1px solid #ccc;
+      }
+
+      .card-bottom .card{
+        border: none;
+      }
+
+      .brandBtn{
+        padding: 0.5em 1em;
+        border-radius: 20px;
+        background: #5cb85c;
+        color: #fff;
+        font-size: 0.8em;
+        text-align: center;
+        position: absolute;
+        bottom: 5px;
+        left: 1em;
+
+      }
+
+      /*.brandlist .brandBtn {
+        padding: 0.5em 1em;
+        border-radius: 20px;
+        background: #5cb85c;
+        color: #fff;
+        font-size: 0.8em;
+        text-align: center;
+        position: absolute;
+        top: 0px !important;
+        left: 2.2em;
+      }*/
+
+    /* End Select Gift Voucher Page*/
+
+    /*Wishlist Customisation Styling*/
+      .pageTit{
+        margin-bottom: 0.5em;
+      }
+
+      .pageSubTitle{
+        margin-bottom: 1.7em;
+      }
+
+      .privacytext{
+        color: #bbb;
+        font-size: .9em;
+      }
+    /*End Wishlist Customisation Styling*/
+
+    /*Wishlist Preview Styling*/
+      .wishlist-preview table img{
+        width: 50px;
+      }
+
+      .wishlist-preview table th{
+        text-align: center !important;
+      }
+
+      .wishlist-preview .brandish{
+        color: rgba(0,0,0,0);
+      }
+
+      .wishlist-preview{
+        display: flex;
+      }
+
+      .wishlist-preview table tr td:nth-of-type(4) {
+        color: #4DB6AC;
+        font-size: .8em;
+        cursor: pointer;
+        text-decoration: none;
+      }
+
+      .wishlist-preview table tr td{
+        vertical-align: middle;
+      }
+
+      .wishlistPreviewBox .card-footer{
+        padding: 2em;
+        border-top: 1px solid #ccc;
+      }
+    /*End Wishlist Preview Styling*/
+
+    /* Share Wishlist Styling*/
+     .shareWishlistBox .card-footer{
+       padding: 1em;
+       border-top: 1px solid #ccc;
+     }
+
+     .share-wishlist{
+       padding: 5em 2em;
+       text-align: center;
+       display: flex;
+     }
+
+     .share-wishlist input{
+       text-align: center;
+     }
+
+     .share-wishlist p i{
+       font-size: 2em;
+     }
+    /*End Share Wishlist Styling*/
+
+/*End Wishlist Page*/
+
+/*Miscellenous*/
+.w-45{
+  max-width: 45% !important;
+}
+
+/*Input and Select with Search Icon*/
+
+.center-block {
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.input-group .icon-addon .form-control {
+    border-radius: 0;
+}
+
+.icon-addon {
+    position: relative;
+    color: #555;
+    display: block;
+}
+
+.icon-addon:after,
+.icon-addon:before {
+    display: table;
+    content: " ";
+}
+
+.icon-addon:after {
+    clear: both;
+}
+
+.icon-addon.addon-md .glyphicon,
+.icon-addon .glyphicon, 
+.icon-addon.addon-md .fa,
+.icon-addon .fa {
+    position: absolute;
+    z-index: 2;
+    left: 10px;
+    font-size: 14px;
+    width: 20px;
+    margin-left: -2.5px;
+    text-align: center;
+    padding: 10px 0;
+    top: 1px
+}
+
+.icon-addon.addon-lg .form-control {
+    line-height: 1.33;
+    height: 46px;
+    font-size: 0.7em;
+    padding: 5px 16px 5px 40px;
+    border: 0px;
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+}
+
+.icon-addon.addon-sm .form-control {
+    height: 30px;
+    padding: 5px 10px 5px 28px;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.icon-addon.addon-lg .fa,
+.icon-addon.addon-lg .glyphicon {
+    font-size: 18px;
+    margin-left: 0;
+    left: 11px;
+    top: 4px;
+}
+
+.icon-addon.addon-md .form-control,
+.icon-addon .form-control {
+    padding-left: 30px;
+    float: left;
+    font-weight: normal;
+}
+
+.icon-addon.addon-sm .fa,
+.icon-addon.addon-sm .glyphicon {
+    margin-left: 0;
+    font-size: 12px;
+    left: 5px;
+    top: -1px
+}
+
+.icon-addon .form-control:focus + .glyphicon,
+.icon-addon:hover .glyphicon,
+.icon-addon .form-control:focus + .fa,
+.icon-addon:hover .fa {
+    color: #2580db;
+}
+
+
+
+/*Algolia Search*/
+
+.ais-range-slider--tooltip {
+    position: absolute;
+     background: none !important; 
+    top: -22px;
+    font-size: .8em;
+}
+
+
