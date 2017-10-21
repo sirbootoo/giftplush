@@ -80,9 +80,9 @@ export class SelectVoucherComponent implements OnInit, OnDestroy, AfterViewInit 
     ngAfterViewInit(){
 
         this.search = instantsearch({
-            appId: 'BEIACNUX0H',
-            apiKey: 'c4d9810352b9bd42d0a6975265330624',
-            indexName: 'giftplush_merchants'
+            appId: 'APP ID',
+            apiKey: 'API KEY',
+            indexName: 'INDEX NAME'
         });
 
         this.search.addWidget(
