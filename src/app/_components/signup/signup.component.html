@@ -20,7 +20,7 @@
 							<label for="password" class="label-custom">Password</label>
 							<input type="password" name="password" [(ngModel)]="password" class="form-control form-control-custom" required>
 
-							<input type="hidden" name="group_id" [(ngModel)]="group_id" value="3" />
+							<input type="hidden" name="group_id" [(ngModel)]="group_id" />
 
 							<button class="btn btn-primary btn-custom" [disabled]="!signupForm.form.valid || loading"><i *ngIf="loading" class="spinner"></i> Register your dashboard</button>
                             <!--<button class="btn btn-primary btn-custom" [disabled]="!signupForm.form.valid || loading" >Register your business</buton>-->

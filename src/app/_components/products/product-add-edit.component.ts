@@ -40,9 +40,9 @@ export class ProductAddEditComponent implements OnInit {
         this.productService.save(this.product); 
 
         // redirect to users view
-        this.router.navigate(['products']);
+        this.router.navigate(['products']); 
 
         // publish event so list controller can refresh
-        this.pubSubService.publish('products-updated');
+        this.pubSubService.publish('products-updated'); 
     }
 }

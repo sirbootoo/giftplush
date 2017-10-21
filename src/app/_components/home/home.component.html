@@ -1,129 +1,289 @@
-﻿<!--<h1>Home</h1>
-<p>Angular 2/4 - Animation Tutorial & Example</p>-->
 
+    <input type="checkbox" id="sidebarToggler">
 
-<header role="banner" id="fh5co-header">
-    <div class="container">
-        <!-- <div class="row"> -->
-        <nav class="navbar navbar-default">
-        <div class="navbar-header">
-            <!-- Mobile Toggle Menu Button -->
-            <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
-            <a class="navbar-brand" href="index.html">Giftplush</a> 
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a routerLink="/signup/merchant"><span>Become a merchant</span></a></li>
-                <li class="active"><a routerLink="/pick"><span>Brands</span></a></li>
-                <li><a routerLink="/pick"><span>Buy Vouchers</span></a></li>
-                <li><a routerLink="/login"><span>Login</span></a></li>
-                <li><a routerLink="/signup/user"><span>Register</span></a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="./">Default <span class="sr-only">(current)</span></a></li>
-                <li><a href="../navbar-static-top/">Static top</a></li>
-                <li><a href="../navbar-fixed-top/">Fixed top</a></li>
-            </ul>
-        </div>
-        </nav>
-        <!-- </div> -->
-    </div>
-</header>
+    <div class="page-wrap">
 
-<div id="slider" data-section="home">
-    <div class="owl-carousel-c owl-carousel-c-main owl-carousel-c-fullwidth">
-        <!-- You may change the background color here. -->
-        <div class="item">
-            <div class="container" style="position: relative;">
-                <div class="row animate-box" data-animate-effect="fadeIn">
-                    <div class="col-md-6 col-sm-6">
-                        <div class="fh5co-owl-text-wrap">
-                            <div class="fh5co-owl-text">
-                                <h2 class="headline-text">
-                                <span class="small-grey-text">It is estimated that</span><br>
-                                <span style="font-weight: bolder">95% of couples get more mugs than they truly need. </span><span class="grey-text">We help make sure you get what you actually need.</span>
-                                </h2>
-                                <p class="sub-text">Make a wishlist and get exactly what you want.</p>				
-                                <a routerLink="/wishlist/index" class="btn btn-primary btn-lg btn-rounded">Make a wishlist in 30 seconds</a><a routerLink="/pick" class="btn btn-primary btn-lg btn-rounded btn-outline">Explore brands</a>
+        <label for="sidebarToggler" class="menu-toggle hidden-md"><img src="/assets/customAssets/images/toggle-icon.svg" alt="toggle-icon"></label>
+
+        <div class="page-content">
+
+            <nav class="navbar">
+                <span class="logo hidden-md"><img src="/assets/customAssets/images/logo.svg" alt="logo"></span>                    
+                <div class="top-nav hidden-sm">
+                    <div class="top-left-nav">
+                        <span class="logo"><img src="/assets/customAssets/images/logo.svg" alt="logo"></span>
+                    </div>
+                    <div class="top-right-nav hidden-sm">
+                        <span><a routerLink="/d/wishlist">Create a wishlist</a></span>
+                        <span><a routerLink="/signup/merchant">Become a merchant</a></span>
+                        <span><a routerLink="/signup/user">Sign up</a></span>
+                        <span><a routerLink="/login">Login</a></span>
+                    </div>
+                </div>
+                <div class="bottom-nav hidden-sm">
+                    <ul>
+                        <label style="position: relative;">
+                            <a href="">Categories</a><i><img src="/assets/customAssets/images/caret-dark.svg" alt="caret"></i>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Home & Garden</a></li>
+                                <li><a href="#">Food & Drink</a></li>
+                                <li><a href="#">Travel & Accomodation</a></li>
+                                <li><a href="#">Days out</a></li>
+                                <li><a href="#">Health & Beauty</a></li>
+                                <li><a href="#">Women's fashion</a></li>
+                                <li><a href="#">Men's fashion</a></li>
+                                <li><a href="#">Electronics</a></li>
+                                <li><a href="#">Utilities & Services</a></li>
+                                <li><a href="#">Finance</a></li>
+                                <li><a href="#">Department stores</a></li>
+                                <li><a href="#">Students</a></li>
+                            </ul>
+                        </label>
+                    </ul>
+                    <ul style="position: relative;">
+                        <label style="position: relative;">
+                            <a href="">Popular brands</a><i><img src="/assets/customAssets/images/caret-dark.svg" alt="caret"></i>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Home & Garden</a></li>
+                                <li><a href="#">Food & Drink</a></li>
+                                <li><a href="#">Travel & Accomodation</a></li>
+                                <li><a href="#">Days out</a></li>
+                                <li><a href="#">Health & Beauty</a></li>
+                                <li><a href="#">Women's fashion</a></li>
+                                <li><a href="#">Men's fashion</a></li>
+                                <li><a href="#">Electronics</a></li>
+                                <li><a href="#">Utilities & Services</a></li>
+                                <li><a href="#">Finance</a></li>
+                                <li><a href="#">Department stores</a></li>
+                                <li><a href="#">Students</a></li>
+                            </ul>
+                        </label>
+                    </ul>
+                    <ul><a href="">Explore collections</a></ul>
+                    <!-- <ul><a href="">Popular brands</a><i><img src="/assets/customAssets/images/caret-dark.svg" alt="caret"></i></ul>
+                    <ul><a href="">Explore collections</a><i><img src="/assets/customAssets/images/caret-dark.svg" alt="caret"></i></ul> -->
+                </div>
+            </nav>
+
+            <div class="hero-section">
+                <h1>Discover digital vouchers from your favorite brands all in one place</h1>
+                <!-- <p>Choose from over 30,000 vouchers from retailers across Nigeria listed</p> -->
+
+                <div class="search-container">
+                    <input type="text" placeholder="Search for brands/vouchers" class="search__box">
+                    <button><img src="/assets/customAssets/images/search.svg" alt="svg"></button>
+                </div>
+
+                <div class="popular-search-container">
+                    <span class="popular-searches">Popular searches</span>
+                    <div class="searches">
+                        <span>Spar vouchers</span><span>Slot vouchers</span><span>Sony vouchers</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-section">
+                <div class="collections-container">
+
+                    <div class="collections">
+                        <div class="section-header">
+                            <h1>Recommended vouchers</h1>
+                            <span class="see-all">See all</span>
+                        </div>
+                        <div class="main-carousel" data-flickity='{ "cellAlign": "center", "contain": true, "groupCells": true, "wrapAround": true, "imagesLoaded": true, "draggable": true, "pageDots": false, "setGallerySize": false, "adaptive": true, "resize": false, "setGallerySize": false, "selectedAttraction": 0.5, "friction": 1 }'>
+                            <div class="carousel-cell">
+                                <img src="/assets/customAssets/images/1.jpg" alt="">
+                                <div class="details">
+                                        <h3>Voucher name</h3>
+                                        <span class="item-desc">Lorem ipsum dolor sit amet, consectetur.</span>
+                                        <span class="vouchers-sold">42 vouchers sold this week</span>
+                                </div>
+                                
+                            </div>
+                            <div class="carousel-cell">
+                                <img src="/assets/customAssets/images/2.jpg" alt="">
+                            </div>
+                            <div class="carousel-cell">
+                                <img src="/assets/customAssets/images/3.jpg" alt="">
+                            </div>
+                            <div class="carousel-cell">
+                                <img src="/assets/customAssets/images/4.jpg" alt="">
+                            </div>
+                            <div class="carousel-cell">
+                                <img src="/assets/customAssets/images/5.jpg" alt="">
+                            </div>
+                            <div class="carousel-cell">
+                                <img src="/assets/customAssets/images/4.jpg" alt="">
+                            </div>
+                            <div class="carousel-cell">
+                                <img src="/assets/customAssets/images/3.jpg" alt="">
+                            </div>
+                            <div class="carousel-cell">
+                                <img src="/assets/customAssets/images/2.jpg" alt="">
+                            </div>
+                            <div class="carousel-cell">
+                                <img src="/assets/customAssets/images/1.jpg" alt="">
+                            </div>
+                            <div class="carousel-cell">
+                                <img src="/assets/customAssets/images/5.jpg" alt="">
+                            </div>
+                            <div class="carousel-cell">
+                                <img src="/assets/customAssets/images/4.jpg" alt="">
+                            </div>
+                            <div class="carousel-cell">
+                                <img src="/assets/customAssets/images/3.jpg" alt="">
                             </div>
                         </div>
+
                     </div>
-                    
+
+                    <div class="collections">
+                        <div class="section-header">
+                            <h1>Recommended vouchers</h1>
+                            <span class="see-all">See all</span>
+                        </div>
+                        <div class="main-carousel" data-flickity='{ "cellAlign": "center", "contain": true, "groupCells": true, "wrapAround": true, "imagesLoaded": true, "draggable": true, "pageDots": false, "setGallerySize": false, "adaptive": true, "resize": false, "setGallerySize": false }'>
+                            <div class="carousel-cell"><img src="/assets/customAssets/images/1.jpg" alt=""></div>
+                            <div class="carousel-cell"><img src="/assets/customAssets/images/2.jpg" alt=""></div>
+                            <div class="carousel-cell"><img src="/assets/customAssets/images/3.jpg" alt=""></div>
+                            <div class="carousel-cell"><img src="/assets/customAssets/images/4.jpg" alt=""></div>
+                            <div class="carousel-cell"><img src="/assets/customAssets/images/5.jpg" alt=""></div>
+                            <div class="carousel-cell"><img src="/assets/customAssets/images/4.jpg" alt=""></div>
+                            <div class="carousel-cell"><img src="/assets/customAssets/images/3.jpg" alt=""></div>
+                            <div class="carousel-cell"><img src="/assets/customAssets/images/2.jpg" alt=""></div>
+                            <div class="carousel-cell"><img src="/assets/customAssets/images/1.jpg" alt=""></div>
+                            <div class="carousel-cell"><img src="/assets/customAssets/images/5.jpg" alt=""></div>
+                            <div class="carousel-cell"><img src="/assets/customAssets/images/4.jpg" alt=""></div>
+                            <div class="carousel-cell"><img src="/assets/customAssets/images/3.jpg" alt=""></div>
+                        </div>
+
+                    </div>
+
+                    <div class="ad">
+                        <img src="/assets/customAssets/images/ad.png" alt="ad">
+                    </div>
+
+                    <div class="collections">
+                        <div class="section-header">
+                            <h1>Recommended vouchers</h1>
+                            <span class="see-all">See all</span>
+                        </div>
+                        <div class="main-carousel" data-flickity='{ "cellAlign": "center", "contain": true, "groupCells": true, "wrapAround": true, "imagesLoaded": true, "draggable": true, "pageDots": false, "setGallerySize": false, "adaptive": true, "resize": false, "setGallerySize": false }'>
+                            <div class="carousel-cell"><img src="/assets/customAssets/images/1.jpg" alt=""></div>
+                            <div class="carousel-cell"><img src="/assets/customAssets/images/2.jpg" alt=""></div>
+                            <div class="carousel-cell"><img src="/assets/customAssets/images/3.jpg" alt=""></div>
+                            <div class="carousel-cell"><img src="/assets/customAssets/images/4.jpg" alt=""></div>
+                            <div class="carousel-cell"><img src="/assets/customAssets/images/5.jpg" alt=""></div>
+                            <div class="carousel-cell"><img src="/assets/customAssets/images/4.jpg" alt=""></div>
+                            <div class="carousel-cell"><img src="/assets/customAssets/images/3.jpg" alt=""></div>
+                            <div class="carousel-cell"><img src="/assets/customAssets/images/2.jpg" alt=""></div>
+                            <div class="carousel-cell"><img src="/assets/customAssets/images/1.jpg" alt=""></div>
+                            <div class="carousel-cell"><img src="/assets/customAssets/images/5.jpg" alt=""></div>
+                            <div class="carousel-cell"><img src="/assets/customAssets/images/4.jpg" alt=""></div>
+                            <div class="carousel-cell"><img src="/assets/customAssets/images/3.jpg" alt=""></div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
-        </div> 
+
+            <div class="newsletter" style="text-align: center">
+                <h1>Get the best deals</h1>
+                <p>#nospam #voucherdealsonly</p>
+                <div class="newsletter--input">
+                    <input type="text" placeholder="Your email address">
+                    <button>Subscribe</button>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="footer-items hidden-sm">
+                    <div class="col hidden-sm">
+                        <h1>giftplush</h1>
+                        <p>Terms & Conditions</p>
+                        <p>Privacy Policy</p>
+                        <p>Security</p>
+                        <p>FAQs</p>
+                    </div>
+                    <div class="col hidden-sm">
+                        <h1>About us</h1>
+                        <p>Contact us</p>
+                        <p>Press</p>
+                        <p>Partner with us</p>
+                    </div>
+                    <div class="col hidden-sm">
+                        <h1>Popular categories</h1>
+                        <p>Restaurant vouchers</p>
+                        <p>Travel & Accomodation vouchers</p>
+                        <p>Women's fashion vouchers</p>
+                        <p>Electrical vouchers</p>
+                        <p>All categories</p>
+                    </div>
+                    <div class="col hidden-sm">
+                        <a href="#" class="transparent-btn">Become a merchant</a>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom hidden-sm">
+                    <hr>
+                    <div class="social-links">
+                        <p>Join us</p>
+                        <div class="icons">
+                            <i><img src="/assets/customAssets/images/facebook.svg" alt="facebook-icon"></i><i><img src="/assets/customAssets/images/twitter.svg" alt="twitter-icon"></i><i><img src="/assets/customAssets/images/instagram.svg" alt="instagram-icon"></i>                                
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="hidden-md transparent-btn">Become a merchant</a>
+                <span class="hidden-md footer-logo"><img src="/assets/customAssets/images/logo-white.svg" alt=""></span>
+                <div class="hidden-md social-links">
+                    <span>facebook</span>
+                    <span>twitter</span>
+                    <span>instagram</span>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 
-<!-- <hr> -->
-<div id="fh5co-our-services" data-section="services">
-    <div class="container">
-        <div class="row row-bottom-padded-sm animate-box">
-            <div class="col-md-12 section-heading text-center">
-                <h2 class="brand-heading">Choose vouchers from Hundreds of Amazing Brands</h2>
-            </div>
-        </div>
-        <div class="row d-flex">
+    <nav class="menu-side hidden-md">
+        <li><a routerLink="/signup/user">Sign Up</a></li>
+        <li><a routerLink="/login">Sign In</a></li>
+        <ul class="side-dropdown">
+            <input type="checkbox" id="revealdropdown1">
+            <label for="revealdropdown1"><span>Categories</span><i><img src="/assets/customAssets/images/caret.svg" alt="caret"></i></label>
+            <ul class="dropdown-menu">
+                <li><a href="#">Home & Garden</a></li>
+                <li><a href="#">Food & Drink</a></li>
+                <li><a href="#">Travel & Accomodation</a></li>
+                <li><a href="#">Days out</a></li>
+                <li><a href="#">Health & Beauty</a></li>
+                <li><a href="#">Women's fashion</a></li>
+                <li><a href="#">Men's fashion</a></li>
+                <li><a href="#">Electronics</a></li>
+                <li><a href="#">Utilities & Services</a></li>
+                <li><a href="#">Finance</a></li>
+                <li><a href="#">Department stores</a></li>
+                <li><a href="#">Students</a></li>
+            </ul>
+        </ul>
 
-            <div class="col-md-2">
-                <div class="box animate-box">
-                    <img src="/assets/indexassets/images/citydia.png" alt="citydia-logo">
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="box animate-box">
-                    <img src="/assets/indexassets/images/hotelsng.png" alt="hotelsng-logo">
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="box animate-box">
-                    <img src="/assets/indexassets/images/bambino.png" alt="bambino-logo">
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="box animate-box">
-                    <img src="/assets/indexassets/images/jtk.png" alt="jtk-logo">
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="box animate-box">
-                    <img src="/assets/indexassets/images/shoprite.png" alt="shoprite-logo">
-                </div>
-            </div>
+        <ul class="side-dropdown">
+            <input type="checkbox" id="revealdropdown2">
+            <label for="revealdropdown2">All brands<i><img src="/assets/customAssets/images/caret.svg" alt="caret"></i></label>
+            <ul class="dropdown-menu">
+                <li><a href="#">Home & Garden</a></li>
+                <li><a href="#">Food & Drink</a></li>
+                <li><a href="#">Travel & Accomodation</a></li>
+                <li><a href="#">Days out</a></li>
+                <li><a href="#">Health & Beauty</a></li>
+                <li><a href="#">Women's fashion</a></li>
+                <li><a href="#">Men's fashion</a></li>
+                <li><a href="#">Electronics</a></li>
+                <li><a href="#">Utilities & Services</a></li>
+                <li><a href="#">Finance</a></li>
+                <li><a href="#">Department stores</a></li>
+                <li><a href="#">Students</a></li>
+            </ul>
+        </ul>
 
-        </div>
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <a href="#" class="btn btn-rounded btn-rounded-ghost" routerLink="/pick">See all</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<footer id="footer" role="contentinfo">
-    <div class="container">
-        <div class="row d-flex">
-            <div class="col-md-4">
-                <a routerLink="/"><p>Giftplush.com</p></a>
-            </div>
-            <div class="col-md-2">
-                <p class="footer-header">Learn More</p>
-                <div class="footer-list">
-                    <a routerLink="/pick"><span>Buy gift cards</span></a>
-                    <a routerLink="/wishlist/index"> <span>Wishlist</span></a>
-                    <a routerLink="/pick"><span>Available Brands</span></a>
-                    <a routerLink="/signup/merchant"><span>Become a merchant</span></a>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <p class="footer-header">Support</p>
-                <div class="footer-list">
-                    <span>About us</span>
-                    <span>Blog</span>
-                    <span>Careers</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
+        <li><a routerLink="/signup/merchant">Become a merchant</a></li>
+    </nav>

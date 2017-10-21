@@ -37,9 +37,6 @@ export class LoginComponent implements OnInit {
         }
 
     ngOnInit() {
-        // reset login status
-        this.authService.logout();
-
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
@@ -52,7 +49,7 @@ export class LoginComponent implements OnInit {
                 data => {
                     this.alertService.success('Login Succesful');
                     this.loading = false;
-                    this.router.navigate([this.returnUrl]);
+                    (this.returnUrl) ? this.router.navigate([this.returnUrl]) : this.router.navigate(['/dashboard/settings']);
                 },
                 error => {
                     this.alertService.error(error);
@@ -62,15 +59,14 @@ export class LoginComponent implements OnInit {
     }
 
 
-    signin(loginForm: any){
+    signin(loginForm: any){ 
         this.loading = true;
-        console.log("Username - "+loginForm.value.username+" Password - "+loginForm.value.password);
         this.authService.emailLogin(loginForm.value.username, loginForm.value.password)
         .then((user) => {
-            this.alert = user;
-            this.alertClass = 'alert alert-success';
-            this.authService.updateUserData(loginForm.value);
+            console.log(user.uid+ ' Logged In');
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
             this.loading = false;
+            this.router.navigate([this.returnUrl]);
         })
         .catch(error => {
             console.log(error); 

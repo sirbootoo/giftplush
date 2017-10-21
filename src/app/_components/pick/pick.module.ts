@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule }   from '@angular/forms';
 
-import { PickRoutingModule } from './pick-routing.module';
+import { PickRoutingModule } from './pick-routing.module'; 
 
 import { SelectVoucherComponent, SelectRecipientsComponent, 
         MessageComposeComponent, MessagePreviewComponent, 

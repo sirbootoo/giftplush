@@ -3,13 +3,16 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 import { FullLayoutComponent } from './_layouts/full-layout.component';
+import { DashboardLayoutComponent } from './_layouts/dashboard-layout.component';
+import { VerifyEmailComponent } from './_components/verify-email/verify-email.component';
+
 
 import { HomeComponent, ProductListComponent, ProductAddEditComponent,
-        LoginComponent, AlertComponent, SignupComponent, DashboardComponent, ActivationComponent } from './_components/index';
+        LoginComponent, AlertComponent, SignupComponent, ActivationComponent } from './_components/index';
 
 import { AuthGuard } from './_guards/index';
 
-import { ModResolver, MessagePreviewResolver, SignupResolver } from './_services/index';
+import { ModResolver, MessagePreviewResolver, SignupResolver, EmailVerifyResolverService } from './_services/index';
 
 // Routes
 const routes: Routes = [
@@ -42,7 +45,15 @@ const routes: Routes = [
             signup: SignupResolver
         } 
     },
-    { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+    { path: 'auth', component: VerifyEmailComponent },
+    { path: 'dashboard', component: DashboardLayoutComponent, canActivate: [AuthGuard],
+        children: [
+            {
+                path: '',
+                loadChildren: './_components/dashboard/dashboard.module#DashboardModule'
+            }
+        ] 
+    },
     { path: 'activate/:id/:code', component: ActivationComponent },
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
@@ -64,5 +75,5 @@ ProductAddEditComponent,
 LoginComponent,
 AlertComponent,
 SignupComponent,
-DashboardComponent,
-ActivationComponent];
+ActivationComponent, 
+VerifyEmailComponent];

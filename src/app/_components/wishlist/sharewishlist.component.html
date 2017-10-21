@@ -34,12 +34,21 @@
         <i class="fa fa-instagram"></i>
       </p>
       <p>Share your wishlist with your friends</p>
+      <span class="badge badge-pill badge-success" *ngIf="copied">Copied To Clipboard</span>
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="giftplush.com/333883jjs8">
+        <input type="text" class="form-control" value="{{link}}" #copyTarget readonly>
         <span class="input-group-btn">
-          <button class="btn btn-primary" type="button">Copy Link</button>
+          <button class="btn btn-primary" [ngxClipboard]="copyTarget" (cbOnSuccess)="copyText()" type="button">Copy Link</button>
         </span>
       </div>
+      <section class="widget sharing_buttons_widget mt-3">
+        <share-container 
+          direction="horizontal"
+          addedText="Your Wishlist"
+          [properties]="{title:'my title', description:'my desc', img:' an image', via:'giftplush', hashtags:'someHashTag', url:link }"
+          [platforms]="['twitter','facebook','mail']">
+        </share-container>             
+    </section>
     </div>
   </div>
 
@@ -50,6 +59,38 @@
   </div>
 
 </div>
+
+<style>
+  .fadeOutt {
+    -webkit-animation: seconds 1.0s forwards;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-delay: 2s;
+    animation: seconds 1.0s forwards;
+    animation-iteration-count: 1;
+    animation-delay: 2s;
+    position: relative;
+    background: red;
+  }
+  @-webkit-keyframes seconds {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      left: -9999px; 
+    }
+  }
+  @keyframes seconds {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      left: -9999px; 
+    }
+  }
+</style>
+
 
 
 

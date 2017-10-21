@@ -1,7 +1,8 @@
 import { Component, Injectable, Inject, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
+import { Router, ActivatedRoute } from '@angular/router';
 
-import { ProductService, PubSubService, AlgoliaService } from '../../_services/index';
+import { ProductService, PubSubService, AlgoliaService, WishlistService } from '../../_services/index';
 
 // import fade in animation
 import { fadeInAnimation, slideUpDownAnimation } from '../../_animations/index';
@@ -39,11 +40,19 @@ export class WishlistCustomisationComponent implements OnInit, OnDestroy {
     itIsPublic: any = 'btn btn-secondary';
     private:any = 1;
     privacyText: any = 'Only you can see this';
+    wishlistInfo: any = {};
 
-    constructor(
+    constructor(private router:Router, private wishlistService: WishlistService,
         private productService: ProductService,
         private pubSubService: PubSubService,
-        private algoliaService: AlgoliaService) {  }
+        private algoliaService: AlgoliaService) { 
+
+            this.wishlistInfo = this.wishlistService.getWishlistInfo;
+
+            console.log(this.wishlistInfo);
+
+
+         }
 
     ngOnInit() {
 
@@ -51,7 +60,7 @@ export class WishlistCustomisationComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         // unsubscribe to ensure no memory leaks
-        this.subscription.unsubscribe();
+        //this.subscription.unsubscribe();
     }
 
     TogglePrivatePublic(){
@@ -70,6 +79,8 @@ export class WishlistCustomisationComponent implements OnInit, OnDestroy {
 
     next(Form:any){
         console.log(Form.value);
+        this.wishlistService.setWishlistInfo(Form.value);
+        this.router.navigate(["/d/wishlist/preview"]);
     }
     
 

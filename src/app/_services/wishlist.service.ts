@@ -1,35 +1,77 @@
 import { Injectable } from '@angular/core';
+import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { Router, Resolve, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import * as firebase from 'firebase/app';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import { environment } from 'environments/environment';
 
 @Injectable()
 export class WishlistService {
+
+    constructor(private http: Http, public afAuth: AngularFireAuth,
+                public db: AngularFireDatabase, public router: Router){
+
+    }
+
+    pushToFirebase(path: any, data: any){
+        console.log(data);
+        /* this.db.object(path).update(data).then(data => {
+            console.log(data);
+        }).catch(err => {
+            console.log(err);
+        }); */
+
+        var ref = firebase.database().ref();
+        
+            // Get a key for a new business.
+            var newItem = ref
+                .child(path)
+                .push(data);
+
+                let link = "http://giftplush.com/d/wishlist/show/"+newItem.key
+
+                console.log(link);
+
+                localStorage.setItem('wishlistLink', JSON.stringify(link));
+    } 
+
     getAll() {
         return this.getItems();
     }
 
     getById(id: number) {
-        return this.getItems().find(item => item.merchantId === id);
+        let jsObjects = JSON.parse(localStorage.getItem('wishlist'));
+        var result = jsObjects.filter(function( obj ) {
+            return obj.merchantId == id;
+        });
+        return result;
     }
 
-    save(product: any) {
-        let wishlist = this.getItems();
+    save(wishlist: any) {
+        let wishlists = this.getItems();
 
-        if (product.id) {
-            // update existing product
+        console.log(wishlist);
 
-            for (var i = 0; i < wishlist.length; i++) {
-                if (wishlist[i].merchantId === product.merchantId) {
-                    wishlist[i] = product;
+        if (wishlist.merchantId) {
+            // update existing wishlist
+
+            for (var i = 0; i < wishlists.length; i++) {
+                if (wishlists[i].merchantId === wishlist.merchantId) {
+                    wishlists[i].purposeOfWishlist = wishlist.purposeOfWishlist;
+                    wishlists[i].amount = wishlist.amount;
+                    wishlists[i].priority = wishlist.priority;
+
                     break;
                 }
             }
-            this.setItems(wishlist);
-        } else {
-            // create new product
 
-            // save to local storage
-            wishlist.push(product);
-            this.setItems(wishlist);
+            console.log(wishlists);
 
+            this.setItems(wishlists);
+            
         }
     }
 
@@ -45,7 +87,7 @@ export class WishlistService {
         this.setItems(wishlist);
     }
 
-    private getItems(): any[] {
+    public getItems() {
         if (!localStorage.getItem('wishlist')) {
             localStorage.setItem('wishlist', JSON.stringify([]));
         }
@@ -56,6 +98,18 @@ export class WishlistService {
 
     private setItems(wishlist: any[]) {
         localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    }
+
+    getWishlistInfo(){
+        if (!localStorage.getItem('wishlistInfo')) {
+            return null;
+        }
+    
+        return JSON.parse(localStorage.getItem('wishlistInfo'));
+    }
+    
+    setWishlistInfo(form: any){
+        localStorage.setItem('wishlistInfo', JSON.stringify(form));
     }
 
 

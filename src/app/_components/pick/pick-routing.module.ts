@@ -14,11 +14,7 @@ const routes: Routes = [
       path: '',
       component: SelectVoucherComponent,
       children: [
-          { path: 'mod/:id', component: ModComponent,
-              resolve: {
-                  merchant: ModResolver
-              }
-          },
+          { path: 'mod/:slug', component: ModComponent },
           
       ]
   },

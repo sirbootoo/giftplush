@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 
-import { AlgoliaService } from '../../_services/index';
+import { AlgoliaService, AuthenticateService } from '../../_services/index';
 
 // import fade in animation
 import { fadeInAnimation } from '../../_animations/index';
@@ -42,12 +42,12 @@ export class MessagePreviewComponent{
         var cnf = confirm("Are you satisfied with your order ? ");
 
         if(cnf){
-            this.router.navigate(['/placeorder']);
+            this.router.navigate(['/d/pick/placeorder']);
         }
     }
 
     back(){
-        this.router.navigate(['/composemessage']);
+        this.router.navigate(['/d/pick/composemessage']);
     }
 
 

@@ -1,8 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from "@angular/platform-browser";
 import { Subscription } from 'rxjs/Subscription';
-
-import {DashboardService, PubSubService} from '../../_services/index';
+import {DashboardService, PubSubService, AuthenticateService} from '../../_services/index';
 
 // import fade in animation
 import { fadeInAnimation } from '../../_animations/index';
@@ -39,29 +38,11 @@ export class DashboardComponent implements OnInit {
     subscription: Subscription;
 
 
-    constructor(title: Title, private dashboard: DashboardService, private pubSubService: PubSubService){
-        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        this.userId = currentUser.userid;
-        this.groupId = currentUser.user.group_id;
-        console.log(this.groupId);
-
-        switch (this.groupId){
-            case '3':
-                this.isMerchant = true;
-                this.isUser = false;
-            break;
-
-            case '2':
-                this.isMerchant = false;
-                this.isUser = true;
-            break;
-
-            default:
-                this.isMerchant = false;
-                this.isUser = false;
-        }
-
+    constructor(title: Title, private dashboard: DashboardService, private pubSubService: PubSubService, private af: AuthenticateService){
+        
         title.setTitle('Dashboard - Giftplush');
+
+        console.log(this.af.currentUserId);
 
     }
 
@@ -187,7 +168,7 @@ export class DashboardComponent implements OnInit {
 
     listTransactions(){
 
-        this.dashboard.listTransactions(this.userId).subscribe(data => {
+        /* this.dashboard.listTransactions(this.userId).subscribe(data => {
 
             switch (data.status){
                 case false:
@@ -204,7 +185,7 @@ export class DashboardComponent implements OnInit {
 
         }, error => {
             console.log("Error: "+error);
-        });
+        }); */
 
     }
 

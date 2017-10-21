@@ -25,6 +25,9 @@
             '@angular/animations': 'npm:@angular/animations/bundles/animations.umd.js',
             '@angular/animations/browser': 'npm:@angular/animations/bundles/animations-browser.umd.js',
             '@angular/platform-browser/animations': 'npm:@angular/platform-browser/bundles/platform-browser-animations.umd.js',
+            '@ngui/auto-complete': 'npm:@ngui/auto-complete/dist/auto-complete.umd.js',
+            "ng2-slugify": "node_modules/ng2-slugify/ng2-slugify.js"
+            
 
             // other libraries
             'rxjs': 'npm:rxjs'

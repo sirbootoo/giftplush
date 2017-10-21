@@ -7,8 +7,9 @@ import { WishlistSelectVoucherComponent,
         ShareWishlistComponent, 
         WishlistCustomisationComponent, 
         WishlistPreviewComponent } from './index';
+        import { ShowComponent } from './show.component';
 
-import { ModResolver, MessagePreviewResolver, SignupResolver } from '../../_services/index';
+import { ModResolver, MessagePreviewResolver, SignupResolver, WishlistshowResolverService } from '../../_services/index';
 
 
 const routes: Routes = [
@@ -16,7 +17,13 @@ const routes: Routes = [
   { path: 'customize', component: WishlistCustomisationComponent },
   { path: 'preview', component: WishlistPreviewComponent },
   { path: 'share', component: ShareWishlistComponent },
-  { path: 'index', component: WishlistSelectVoucherComponent }
+  { path: 'index', component: WishlistSelectVoucherComponent },
+  { path: 'show/:slug', component: ShowComponent, 
+    resolve: {
+      slug: WishlistshowResolverService
+    } 
+  }
+  
 ];
 
 @NgModule({

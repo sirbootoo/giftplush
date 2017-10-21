@@ -17,11 +17,11 @@
       <h6>Customise your wallet</h6>
       <div class="form-group">
         <label for="wishlistName">Wishlist Name</label>
-        <input type="text" class="form-control" name="wishlistName" [(ngModel)]="wishlistName" id="wishlistName" required>
+        <input type="text" class="form-control" name="wishlistName" [(ngModel)]="wishlistInfo.wishlistName" id="wishlistName" required>
       </div>
       <div class="form-group">
         <label for="purposeOfWishlist">Purpose of Wishlist (optional)</label>
-        <input type="text" class="form-control" name="purposeOfWishlist" [(ngModel)]="purposeOfWishlist" id="purposeOfWishlist" placeholder="Ex. For my birthday, for my wedding, For my graduation">
+        <input type="text" class="form-control" name="purposeOfWishlist" [(ngModel)]="wishlistInfo.purposeOfWishlist" id="purposeOfWishlist" placeholder="Ex. For my birthday, for my wedding, For my graduation">
       </div>
       <div class="row">
         <div class="col-md-8">
@@ -30,7 +30,7 @@
             <div class="btn-group" role="group" aria-label="Basic example">
               <button type="button" [ngClass]="itIsPrivate" (click)="TogglePrivatePublic()">Private</button>
               <button type="button"[ngClass]="itIsPublic" (click)="TogglePrivatePublic()">Public</button>
-              <input type="hidden" name="private" [(ngModel)]="private" class="form-control" aria-describedby="sizing-addon2" value="{{private}}" >
+              <input type="hidden" name="private" [(ngModel)]="wishlistInfo.private" class="form-control" aria-describedby="sizing-addon2" value="{{private}}" >
             </div>
             <span class="ml-3 mt-2 privacytext">{{privacyText}}</span>
           </div>
@@ -38,7 +38,7 @@
         <div class="col-md-4">
           <div class="form-group">
             <label for="expires">Expires</label>
-            <input type="date" class="form-control" name="expires" [(ngModel)]="expires" id="expires" required>
+            <input type="date" class="form-control" name="expires" [(ngModel)]="wishlistInfo.expires" id="expires" required>
           </div>
         </div>
       </div>

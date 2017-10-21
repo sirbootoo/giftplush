@@ -10,7 +10,7 @@
         <div class="col-sm-12 col-md-12">
           <div class="form-group">
               <div class="icon-addon addon-lg"  style="z-index: 1 !important; text-align: center">
-                  <input type="text" placeholder="Search" class="form-control" id="searchInput">
+                  <input type="text" placeholder="Search" class="form-control" id="searchInput" value="tele">
                   <label for="searchInput" class="fa fa-search" rel="tooltip" title="searchInput"></label>
               </div>
           </div>
@@ -19,13 +19,20 @@
 
       <!-- List showing the merchants (brands) -->
 
-        <div class="" id="hits">
-          <i class="fa fa-spinner fa-pulse fa-lg fa-fw"></i>
-          <span class="sr-only">Loading...</span>
+      <div class="row">
+        <div class="col-md-3 col-4 col-sm-4 hit" *ngFor="let hit of hitts | async">
+          <a class="acard" routerLink="/pick/mod/{{hit.id}}">
+              <div class="card">
+                <img class="card-img-top img-fluid" src="{{hit.profile_img}}" alt="{{hit.company}} Gift Voucher">
+                <div class="card-block">
+                    <p class="card-text">{{hit.company}}</p>
+                </div>
+              </div>
+          </a>
+        </div>
       </div>
 
       <!-- End List showing the merchants (brands) -->
-      
     
     </div>
     <div class="card-footer text-center">
@@ -63,7 +70,8 @@
 </div>
 <!--  End View Modal Page Box-->
 
-
-
-
-
+<style>
+  .acard .card-block {
+    padding: 0em !important;
+  }
+</style>

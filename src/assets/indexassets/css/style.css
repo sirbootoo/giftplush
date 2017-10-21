@@ -64,10 +64,11 @@ h4 {
 #fh5co-header {
   position: absolute;
   z-index: 99;
-  width: 100%;
+  width: 98%;
   opacity: 1;
+  background: black;
   top: 0;
-  margin-top: 20px;
+  /* margin-top: 20px; */
 }
 @media screen and (max-width: 768px) {
   #fh5co-header {
@@ -79,7 +80,7 @@ h4 {
     box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.1);
   }
   #fh5co-header .navbar-brand {
-    color: #303841 !important;
+    color: rgba(0, 0, 0, 0.5) !important;
   }
   #fh5co-header #navbar li a {
     color: rgba(0, 0, 0, 0.5) !important;

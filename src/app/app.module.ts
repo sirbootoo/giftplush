@@ -8,16 +8,21 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from 'environments/environment';
 
+
 import { AppComponent } from './app.component';
 import { AppRoutingModule, routedComponents } from './app-routing.module';
 import { ProductService, PubSubService, ModResolver, 
     AlgoliaService, MessagePreviewResolver, 
-    WishlistService, AlertService, AuthenticateService, SignupResolver, DashboardService } from './_services/index';
+    WishlistService, AlertService, AuthenticateService, SignupResolver, DashboardService, EmailVerifyResolverService, FileUploadService, WishlistshowResolverService } from './_services/index';
 import { AuthGuard } from './_guards/index';
 
 import { CountdownPipe } from './pipes/countdown.pipe';
 import { SideBarToogleDirective } from './_directives/side-bar-toogle.directive';
+import { NavBarToogleDirective } from './_directives/nav-bar-toggle.directive';
 import { FullLayoutComponent } from './_layouts/full-layout.component';
+import { DashboardLayoutComponent } from './_layouts/dashboard-layout.component';
+import { FileItemDirective } from './_directives/file-item.directive';
+
 
 @NgModule({
     imports: [
@@ -26,16 +31,19 @@ import { FullLayoutComponent } from './_layouts/full-layout.component';
         AppRoutingModule,
         HttpModule,
         BrowserAnimationsModule,
-        AngularFireModule.initializeApp(environment.firebase, 'heisenberg-dev'),
         AngularFireDatabaseModule,
-        AngularFireAuthModule
+        AngularFireAuthModule,
+        AngularFireModule.initializeApp(environment.firebase, 'heisenberg')
     ],
     declarations: [
         AppComponent,
         routedComponents,
         //CountdownPipe,
         SideBarToogleDirective,
-        FullLayoutComponent
+        NavBarToogleDirective,
+        FullLayoutComponent,
+        DashboardLayoutComponent,
+        FileItemDirective
     ],
     providers: [
         ProductService,
@@ -48,7 +56,9 @@ import { FullLayoutComponent } from './_layouts/full-layout.component';
         AuthenticateService,
         AuthGuard,
         SignupResolver,
-        DashboardService
+        DashboardService,
+        EmailVerifyResolverService,
+        WishlistshowResolverService
     ],
     bootstrap: [AppComponent]
 })

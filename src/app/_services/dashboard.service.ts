@@ -9,6 +9,7 @@ import 'rxjs/add/operator/catch';
 export class DashboardService {
 
     base_url: string = 'https://api.giftplush.com/api/';
+    locationApi = 'http://locationsng-api.herokuapp.com/api/v1/states/:state/lgas';
     currentUser: any = JSON.parse(localStorage.getItem('currentUser'));
 
 
@@ -33,6 +34,19 @@ export class DashboardService {
 
     listTransactions(userid:any){
         return this.http.get(this.base_url+'autho/listtransactions/id/'+userid, this.jwt())
+        .map((response: Response) => response.json())
+        .catch((err:any) => Observable.throw(err));
+    }
+
+    //States And Cities
+    states(){
+        return this.http.get('http://locationsng-api.herokuapp.com/api/v1/states/')
+        .map((response: Response) => response.json())
+        .catch((err:any) => Observable.throw(err));
+    }
+
+    lga(state: any){
+        return this.http.get('http://locationsng-api.herokuapp.com/api/v1/states/'+state+'/lgas')
         .map((response: Response) => response.json())
         .catch((err:any) => Observable.throw(err));
     }

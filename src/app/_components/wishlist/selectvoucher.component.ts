@@ -1,7 +1,12 @@
-import { Component, Injectable, Inject, OnInit, OnDestroy, AfterViewInit, AfterContentInit ,ElementRef, Renderer } from '@angular/core';
+import { Component, Injectable, Inject, OnInit, OnDestroy, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { Meta, Title } from "@angular/platform-browser";
 import { Router, ActivatedRoute } from '@angular/router';
+
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+
+import * as instantsearch from 'instantsearch.js';
+import {connectHits} from "instantsearch.js/es/connectors/index";
 
 import { ProductService, PubSubService, AlgoliaService, WishlistService } from '../../_services/index';
 
@@ -23,7 +28,7 @@ declare var instantsearch: any;
     host: { '[@fadeInAnimation]': '' }
 })
 
-export class WishlistSelectVoucherComponent implements OnInit, OnDestroy, AfterViewInit, AfterContentInit {
+export class WishlistSelectVoucherComponent implements OnInit, OnDestroy, AfterViewInit {
     merchants: any;
     brands: any;
     brand: any;
@@ -35,12 +40,15 @@ export class WishlistSelectVoucherComponent implements OnInit, OnDestroy, AfterV
     search: any;
     clo:any;
     wishlistItems: any;
+    hitts:any = new BehaviorSubject(null);
+    items: any = {};
+    selected: any;
 
     constructor( meta: Meta, title: Title, private router:Router,
         private wishlistService: WishlistService,
         private productService: ProductService,
         private pubSubService: PubSubService,
-        private algoliaService: AlgoliaService, public el: ElementRef, public renderer: Renderer) { 
+        private algoliaService: AlgoliaService, private cdr: ChangeDetectorRef) { 
 
             title.setTitle('Wishlist - Giftplush');
 
@@ -80,33 +88,15 @@ export class WishlistSelectVoucherComponent implements OnInit, OnDestroy, AfterV
             })
         );
 
+        let customHits = connectHits(this.renderFn);
+        
         this.search.addWidget(
-            instantsearch.widgets.hits({
-                container: '#hits',
-                hitsPerPage: 8,
-                cssClasses: {
-                root: 'row brandlist',
-                item: 'col-3 col-sm-3'
-                },
-                templates: {
-                item: `            
-            <div class="hit">
-                <a  class="cardBox" id="card{{id}}" info='{"merchantId": "{{id}}", "merchantName": "{{company}}", "profile_img": "{{profile_img}}" }'>
-                    <div class="card">
-                    <img class="card-img-top img-fluid" src="{{profile_img}}" alt="{{company}} Gift Voucher">
-                    <div class="card-block">
-                        <p class="card-text">{{company}} Gift Voucher</p>
-                    </div>
-                    </div>
-                </a>
-            </div>
-            
-            `,
-                empty: '<div class="text-center">No results found matching <strong>{{query}}</strong>.</div>'
-                }
-            })
+            customHits({
+            subject: this.hitts
+            }) 
         );
 
+        
         this.search.addWidget(
             instantsearch.widgets.pagination({
                 container: '#pagination',
@@ -184,71 +174,14 @@ export class WishlistSelectVoucherComponent implements OnInit, OnDestroy, AfterV
 
         console.log('ngAfterViewInit works');
 
-        // Vanilla Javascript for selecting items in wishlist merchant search
+        this.cdr.detectChanges();
 
-            document.querySelector('div#hits').addEventListener('click', function(event) {
-                let evnt:any = event.target;
-                if ((evnt.tagName.toLowerCase() === 'img' && evnt.className === 'card-img-top img-fluid') || (evnt.tagName.toLowerCase() === 'p' && evnt.className === 'card-text') || (evnt.tagName.toLowerCase() === 'div' && evnt.className === 'card-block' )) {
-                    
-                    var tco = []; 
-
-                    var slo = evnt.closest(".cardBox").getAttribute('info');
-
-                    var slc = JSON.parse(slo);
-
-                    var wshl = JSON.parse(localStorage.getItem('wishlist')) || [];
-
-                    var d1 = document.getElementById('lowerFiller');
-                    d1.insertAdjacentHTML('beforeend', `<div class="col-md-2 col-xs-2 col-sm-2">
-        <div class="card">
-          <img class="card-img-top img-fluid" src="`+slc.profile_img+`" alt="Card image cap">
-          <span class="brandBtn" (click)="remove(wishlistItem.merchantId)">Remove</span>
-        </div>
-      </div>`);
-
-                    if(wshl.find(item => item.merchantId === slc.merchantId)){
-
-                        for (var i = 0; i < wshl.length; i++) {
-                            if (wshl[i].merchantId === slc.merchantId) {
-                                wshl[i] = slc;
-                                break;
-                            }
-                        }
-
-                        wshl.push(slc);
-
-                        localStorage.setItem('wishlist', JSON.stringify(wshl));
-
-                        this.loadList();
-
-                        console.log('wishlist: '+wshl);
-
-                    }else{
-
-                        wshl.push(slc);
-
-                        localStorage.setItem('wishlist', JSON.stringify(wshl));
-
-                        this.loadList();
-
-                    }
-
-                    console.log(slc);
-
-                    
-
-                }
-            });
-
-        // End Vanilla Script
-
+        var innerEditor = document.getElementById("inner-editor") ;
+        innerEditor.innerHTML = "tele";
+        console.log(innerEditor.innerHTML = "tele");
         
 
     }
-
-    ngAfterContentInit() {
-    
-  }
 
     public selectVoucher(formData: any){
         if(this.btnList.length >= 5){
@@ -263,14 +196,51 @@ export class WishlistSelectVoucherComponent implements OnInit, OnDestroy, AfterV
         
     }
 
-    public test(){
+        public test(){
             console.log('test');
         }
 
-        // public findAncestor (el:any, cls:any) {
-        //     while ((el = el.parentElement) && !el.classList.contains(cls));
-        //     return el;
-        // }
+        addDown(hit:any){
+
+            this.selected = true;
+
+            var slo = {
+                merchantId: hit.id,
+                profile_img: hit.profile_img,
+                merchantName: hit.company 
+            }
+
+            console.log(slo);
+            
+            var wshl = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+            var el = wshl.filter(function(el) {
+                return el.merchantId === slo.merchantId;
+            });
+
+            console.log(el.length);
+
+            if(el.length){
+                
+                return true;
+
+            }else{
+
+                wshl.push(slo);
+
+                localStorage.setItem('wishlist', JSON.stringify(wshl));
+
+                this.loadList();
+
+            }
+
+        }
+
+        renderFn(HitsRenderingOptions) {
+            
+            HitsRenderingOptions.widgetParams.subject.next(HitsRenderingOptions.hits)
+            
+        }
 
         remove(id:any){
             this.wishlistService.delete(id);
@@ -283,8 +253,15 @@ export class WishlistSelectVoucherComponent implements OnInit, OnDestroy, AfterV
         }
 
         next(){
-            this.router.navigate(["/wishlist/customize"]);
+            this.router.navigate(["/d/wishlist/customize"]);
         }
+
+        scroll(el:any) {
+            el.scrollIntoView();
+            this.selected = false;
+        }
+
+        
     
 
 }

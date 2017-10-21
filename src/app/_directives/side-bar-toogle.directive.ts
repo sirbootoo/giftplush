@@ -11,6 +11,7 @@ export class SideBarToogleDirective {
   toggleOpen($event: any) {
     $event.preventDefault();
     document.querySelector('.row-offcanvas').classList.toggle('active');
+    document.querySelector('.sidebtn').classList.toggle('active');
   } 
 
 } 

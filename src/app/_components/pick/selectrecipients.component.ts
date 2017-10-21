@@ -49,9 +49,9 @@ export class SelectRecipientsComponent {
 
         var sRF = selectRecipientForm.value;
 
-        this.algoliaService.setTransaction(selectRecipientForm);
+        this.algoliaService.setTransaction(sRF);
 
-        this.router.navigate(['/composemessage']);
+        this.router.navigate(['/d/pick/composemessage']);
     }
 
     back(){

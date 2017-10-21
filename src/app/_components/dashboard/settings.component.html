@@ -1,0 +1,151 @@
+<div class="{{alertClass}}" role="alert" *ngIf="alertTxt">
+    {{alertTxt}}
+</div>
+<div class="row  d-flex flex-md-column flex-md-wrap">
+    <div class="col-md-6 col-sm-6 col-xs-6 pb-3">
+        <div class="card" style="padding: 2em;">
+            <h5>Logo Upload</h5><br>
+            <!-- <div class="alert {{alertClass}}" *ngIf="alert">{{alerttxt}}</div> -->
+            <input type="file" ng2FileSelect [uploader]="uploader" accept="image/*;capture=camera">
+            
+            <button [disabled]="loading" (click)="uploadLogo()" class="btn btn-success mt-3">Upload</button>
+
+            <img [src]="logo" class="img-fluid img-thumbnail mt-3 mx-auto d-block" style="height: 150px" public-id="imageId" *ngIf="logo" />
+
+        </div> 
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6 pb-3">
+        <div class="card" style="padding: 2em;">
+            <h5>Documents Upload</h5><br>
+            <!-- <div class="alert {{alertClass}}" *ngIf="alert">{{alerttxt}}</div> -->
+            <input type="file" ng2FileSelect [uploader]="uploader" accept="image/*;capture=camera">
+            
+            <button [disabled]="loading" (click)="uploadDocs()" class="btn btn-success mt-3 mb-3">Upload</button>
+            
+            <h5>Documents Gallery</h5>
+            <div class="row">
+
+                <div class="col-md-4" *ngFor="let image of docsImg; let i = index">
+                    <img src="{{image.$value}}" class="img-thumbnail" />
+                </div>
+
+            </div>    
+        
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6 pb-3">
+        <div class="card" style="padding: 2em;">
+            <h5>Store Pictures Upload</h5><br>
+            <!-- <div class="alert {{alertClass}}" *ngIf="alert">{{alerttxt}}</div> -->
+            <input type="file" ng2FileSelect [uploader]="uploader" data-cloudinary-field="storeimages[]" accept="image/*;capture=camera" multiple="multiple">
+            
+            <button [disabled]="loading" (click)="uploadStorePics()" class="btn btn-success mt-3">Upload</button>
+            
+            <div class="row" *ngIf="storesImg">
+                
+                <div class="col-md-4" *ngFor="let image of storesImg; let i = index">
+                    <img src="{{image.$value}}" class="img-thumbnail" />
+                </div>
+
+            </div> 
+        
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-12 col-xs-12 pb-3">
+        <div class="card"  style="padding: 2em;">
+
+            <h5>Business Info</h5>
+            <form #infoForm="ngForm" (submit)="updateInfo(infoForm)">
+                <div class="form-group">
+                    <label for="exampleInputAddress1">Business ddress</label>
+                    <input type="text" class="form-control" name="address" [(ngModel)]="address" id="exampleInputAddress1" aria-describedby="addressHelp" placeholder="Enter Address">
+                    <small id="addressHelp" class="form-text text-muted">Please let your business address match the address on your utility bill as that will facilitate the vetting process.</small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">States</label>
+                    <input  ngui-auto-complete
+                    name="selectState"
+                    [(ngModel)]="selectState" 
+                    [source]="statez"  
+                    class="form-control"
+                    placeholder="State (E.g Lagos)"
+                    (valueChanged)="lga($event)" />
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Area</label>
+                    <input  ngui-auto-complete
+                    name="selectLga"
+                    [(ngModel)]="selectLga" 
+                    [source]="lgas" 
+                    placeholder="Local Government Area (E.g Surulere)" 
+                    class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="catt">Categories</label>
+                    <input  ngui-auto-complete
+                    name="selected"
+                    [(ngModel)]="selected" 
+                    [source]="items"  
+                    class="form-control" 
+                    id="catt"
+                    placeholder="Categories (E.g. Birthdays, Weddings, ...)" 
+                    (valueChanged)="valueChanged($event)" />
+
+                    <div class="row">
+                        <span class="badge badge-pill badge-success" *ngFor="let category of cat">
+                            {{category.$value || category }}
+                            <i class="close fa fa-times" (click)="removeCategory(category)"></i>  
+                        </span>
+                        <small>{{catAlert}}</small>
+                    </div>
+
+                </div>
+                
+                <div class="form-group">
+                    <label for="about">About</label>
+                    <textarea name="about" ngModel="about" class="form-control" id="about" rows="3" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="minAmount">Minimum Amount</label>
+                    <input type="text" class="form-control" name="minAmount" [(ngModel)]="minAmount" id="minAmount" aria-describedby="minHelp" placeholder="Enter Amount" required>
+                    <small id="minHelp" class="form-text text-muted">Please insert the minimum amount one can spend at your store.</small>
+                </div>
+
+                <button [disabled]="loading || !infoForm.form.valid" (click)="updateInfo(infoForm)" class="btn btn-success mt-3">Update Business Info</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    
+.row.d-flex {
+    height: 100vw;
+    max-height: calc(100vh * 2);
+}
+
+@media (min-width: 600px) {
+    .pb-3 {
+        flex: initial;
+        display: block;
+        
+    }
+}
+
+@media (min-width: 600px) and (max-width: 730px) {
+    .row.d-flex {
+        max-height: 1200px;
+        height: 1200px;
+    }
+}
+
+
+@media (min-width: 731px) and (max-width: 1200px) {
+    .row.d-flex {
+        max-height: 1200px;
+    }
+}
+
+
+</style>

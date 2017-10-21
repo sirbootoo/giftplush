@@ -6,5 +6,8 @@ export * from './authenticate.service';
 export * from './wishlist.service';
 export * from './mod.resolver.service';
 export * from './messagePreview.resolver.service';
+export * from './email-verify-resolver.service';
 export * from './signup.resolver';
 export * from './dashboard.service';
+export * from './file-upload.service';
+export * from './wishlistshow-resolver.service';

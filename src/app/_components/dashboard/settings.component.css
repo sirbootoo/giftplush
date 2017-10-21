@@ -1,0 +1,22 @@
+.ciimage{
+    float: left !important;
+    position: relative !important;
+    margin-top: 1em;
+}
+
+.row{
+    -moz-column-width: 20em;
+    -webkit-column-width: 20em;
+    -moz-column-gap: 10px;
+    -webkit-column-gap:10px; 
+}
+
+.badge .close{
+    margin-left: .6em;
+}
+
+.badge{
+    margin: 0.5em;
+    padding: 0.7em;
+    font-size: .8em;
+}

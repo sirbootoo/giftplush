@@ -30,14 +30,14 @@ export class MessageComposeComponent {
 
         console.log(composeMessageForm);
 
-        this.algoliaService.setTransaction(composeMessageForm);
+        this.algoliaService.setTransaction(composeMessageForm.value);
 
-        this.router.navigate(['/messagepreview']);
+        this.router.navigate(['/d/pick/messagepreview']);
 
     }
 
     back(){
-        this.router.navigate(['/selectrecipients']);
+        this.router.navigate(['/d/pick/selectrecipients']);
     }
 
 }

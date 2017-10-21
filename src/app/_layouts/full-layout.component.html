@@ -4,7 +4,9 @@
 
       <div class="sidebar-cent" *ngIf="cate">
 
-        <p class="logo">giftplush.</p>
+        <p class="logo">
+          <a routerLink="/"> giftplush. </a>
+        </p>
 
         <h4>Occasions</h4>
         <div id="brands">
@@ -29,40 +31,33 @@
 
       <div class="sidebar-cent" *ngIf="!cate">
 
-        <p class="logo">giftplush.</p>
+          <p class="logo">
+            <a routerLink="/"> giftplush. </a>
+          </p>
 
         <div class="filter-list">
           <p class="active"> 
-            Send Gifts
+            <a routerLinkActive="active" routerLink="/d/pick"> Send Gifts </a>
           </p>
           <p>
-            Create Wishlist
-          </p>
-          <p>
-            Redeem Gift Voucher
-          </p>
-          <p>
-            Swap Gift Voucher
+            <a routerLinkActive="active" routerLink="/d/wishlist"> Create Wishlist </a>
           </p>
         </div>
         <hr>
 
-        <div class="filter-list">
+        <div class="filter-list" *ngIf="loggedIn">
           <p>
-            Dashboard
+            <a routerLinkActive="active" routerLink="/dashboard"> Dashboard </a>
           </p>
           <p>
-            Wallet
-          </p>
-          <p>
-            Transaction History
+            <a routerLinkActive="active" routerLink="/dashboard"> Transaction History </a>
           </p>
         </div>
         <hr>
 
-        <div class="filter-list">
-          <p>
-            Support
+        <div class="filter-list" *ngIf="loggedIn">
+          <p (click)="logout()">
+            Logout
           </p>
         </div>
 
@@ -73,9 +68,13 @@
   </div><!--/span-->
 
   <div class="col-12 col-md-8 right-box">
-    <p class="hidden-md-up">
-      <button type="button" class="btn btn-primary btn-sm" id="dataTog" data-toggle="offcanvas" appSideBarToogle>Toggle nav</button>
+
+    <p id="nav-icon1" class="hidden-md-up sidebtn" data-toggle="offcanvas" appSideBarToogle>
+      <span></span>
+      <span></span>
+      <span></span>
     </p>
+    
     <router-outlet></router-outlet>
   </div><!--/span-->
 

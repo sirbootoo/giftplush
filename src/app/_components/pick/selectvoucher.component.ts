@@ -1,10 +1,12 @@
-import { Component, Injectable, Inject, OnInit, OnDestroy, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, Injectable, Inject, OnInit, OnDestroy, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { Meta, Title } from "@angular/platform-browser";
 import { Router, ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import * as instantsearch from 'instantsearch.js';
+import {connectHits} from "instantsearch.js/es/connectors/index";
+
 
 
 import { ProductService, PubSubService, AlgoliaService } from '../../_services/index';
@@ -13,9 +15,9 @@ import { ProductService, PubSubService, AlgoliaService } from '../../_services/i
 import { fadeInAnimation, slideUpDownAnimation } from '../../_animations/index';
 
 declare var instantsearch: any;
+declare var connectors: any;
 @Component({
     moduleId: module.id.toString(),
-    providers: [AlgoliaService],
     templateUrl: 'selectvoucher.component.html',
 
     // make fade in animation available to this component
@@ -52,7 +54,7 @@ export class SelectVoucherComponent implements OnInit, OnDestroy, AfterViewInit 
         private algoliaService: AlgoliaService,
         private route: ActivatedRoute,
         private router: Router,
-        private el: ElementRef) { 
+        private cdr: ChangeDetectorRef) { 
 
             title.setTitle('Search For Voucher - Giftplush');
 
@@ -68,26 +70,11 @@ export class SelectVoucherComponent implements OnInit, OnDestroy, AfterViewInit 
 
     ngOnInit() {
 
-        this.algoliaService.getMerchants()
-                .subscribe(data => {
-                    console.log(data);
-                    this.hits = data;
-
-                    this.merchant = this.algoliaService.setbrandds(this.hits);
-                    console.log(this.merchant);
-                },
-                error => {
-                    console.log(error);
-                });
-
-        // reload products when updated
-        this.subscription = this.pubSubService.on('transactions-updated').subscribe(() => this.loadMerchants());
-
     }
 
     ngOnDestroy() {
         // unsubscribe to ensure no memory leaks
-        this.subscription.unsubscribe();
+        /* this.subscription.unsubscribe(); */
     }
 
     ngAfterViewInit(){
@@ -102,33 +89,6 @@ export class SelectVoucherComponent implements OnInit, OnDestroy, AfterViewInit 
             instantsearch.widgets.searchBox({
                 container: '#searchInput',
                 poweredBy: true
-            })
-        );
-
-        this.search.addWidget(
-            instantsearch.widgets.hits({
-                container: '#hits',
-                hitsPerPage: 8,
-                cssClasses: {
-                root: 'row brandlist',
-                item: 'col-3 col-sm-3'
-                },
-                templates: {
-                item: `            
-            <div class="hit">
-                <a class="acard" routerLink="/pick/mod/{{id}}" ng-reflect-router-link="/pick/mod/{{id}}" [href]="/pick/mod/{{id}}">
-                    <div class="card">
-                    <img class="card-img-top img-fluid" src="{{profile_img}}" alt="{{company}} Gift Voucher">
-                    <div class="card-block">
-                        <p class="card-text">{{company}} Gift Voucher</p>
-                    </div>
-                    </div>
-                </a>
-            </div>
-            
-            `,
-                empty: '<div class="text-center">No results found matching <strong>{{query}}</strong>.</div>'
-                }
             })
         );
 
@@ -204,32 +164,21 @@ export class SelectVoucherComponent implements OnInit, OnDestroy, AfterViewInit 
                 }
             })
         );
+        
+        let customHits = connectHits(this.renderFn);
+        
+        this.search.addWidget(
+            customHits({
+            subject: this.hitts
+            }) 
+        );
 
 
         this.search.start();
-        
 
         console.log('ngAfterViewInit works');
 
-        this.el.nativeElement;
-
-
-        document.querySelector('div#hits').addEventListener('click', function(event) {
-            let evnt: any= event.target;
-            if ((evnt.tagName.toLowerCase() === 'img' && evnt.className === 'card-img-top img-fluid') || (evnt.tagName.toLowerCase() === 'p' && evnt.className === 'card-text') || (evnt.tagName.toLowerCase() === 'div' && evnt.className === 'card-block' )) {
-                
-                this.clo = '/d'+evnt.closest(".acard").getAttribute('routerLink');
-                console.log(this.clo);
-
-                location.href = this.clo;
-
-            }
-        });
-
-
-        
-
-
+        this.cdr.detectChanges();
 
     }
 
@@ -239,21 +188,9 @@ export class SelectVoucherComponent implements OnInit, OnDestroy, AfterViewInit 
     }
 
     renderFn(HitsRenderingOptions) {
-        HitsRenderingOptions.widgetParams.containerNode.html(
-            HitsRenderingOptions.hits.map(function(hit) {
-            return '<div>' + hit._highlightResult.name.value + '</div>';
-            // return `<div class="hit">
-            //     <a class="acard" routerLink="/pick/mod/{{id}}" ng-reflect-router-link="/pick/mod/{{id}}" [href]="/pick/mod/{{id}}">
-            //         <div class="card">
-            //         <img class="card-img-top img-fluid" src="{{profile_img}}" alt="{{company}} Gift Voucher">
-            //         <div class="card-block">
-            //             <p class="card-text">{{company}} Gift Voucher</p>
-            //         </div>
-            //         </div>
-            //     </a>
-            // </div>`;
-            })
-        );
+        
+        HitsRenderingOptions.widgetParams.subject.next(HitsRenderingOptions.hits)
+        
     }
     
 

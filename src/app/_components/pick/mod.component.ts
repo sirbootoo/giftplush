@@ -1,10 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import * as firebase from 'firebase/app';
+import { Observable } from 'rxjs';
 import { Subscription } from 'rxjs/Subscription';
 import { Meta, Title } from "@angular/platform-browser";
 
-import { ProductService, PubSubService, AlgoliaService } from '../../_services/index';
+import { ProductService, PubSubService, AlgoliaService, AuthenticateService } from '../../_services/index';
 
 // import slide in/out animation
 import { slideInOutAnimation } from '../../_animations/index';
@@ -31,22 +35,37 @@ export class ModComponent implements OnInit {
         private router: Router,
         private productService: ProductService,
         private pubSubService: PubSubService,
-        private algoliaService: AlgoliaService) {
-            this.route.data.subscribe( (data) => {
+        private algoliaService: AlgoliaService, public afAuth: AngularFireAuth, 
+        private db: AngularFireDatabase, private auth: AuthenticateService) {
+            route.params.forEach(params => {
 
-                console.log(data);
-                this.merchant = data.merchant[0];
-            
-                console.log(this.merchant);
-            });
+                this.db.list('/businessInfo', {
+                    query: {
+                        orderByChild: 'slug',
+                        equalTo: params['slug']
+                    }
+                }).subscribe(data => {
+                    if(typeof data[0] !== 'undefined'){
+                        console.log(data[0]);
+                        this.merchant = data[0];
+                        this.merchant.logo = data[0].images.logo;
 
-            title.setTitle(this.merchant.company+" - Giftplush");
+                        //Meta Tags For The Merchant's Page
+                        title.setTitle(this.merchant.businessName+" - Giftplush");
+                        meta.addTags([
+                            { name: 'author',   content: 'Giftplush'},
+                            { name: 'keywords', content: this.merchant.businessName+', '+this.merchant.businessName+' vouchers,'+this.merchant.company+' gift vouchers'},
+                            { name: 'description', content: this.merchant.about }
+                        ]);
+                        //End Meta Tags For The Merchant's Page
 
-            meta.addTags([
-                { name: 'author',   content: 'Giftplush'},
-                { name: 'keywords', content: this.merchant.company+', '+this.merchant.company+' vouchers,'+this.merchant.company+' gift vouchers'},
-                { name: 'description', content: this.merchant.about }
-            ]);
+                        console.log(this.merchant.logo);
+                    }else{
+                        this.router.navigate(['/pick']);
+                    }
+                });
+                
+              });
 
 
         }
@@ -60,8 +79,6 @@ export class ModComponent implements OnInit {
 
         this.loading = true;
 
-        console.log(modForm.controls);
-
         this.transact = {
             company: modForm.controls.company.value,
             address: modForm.controls.address.value,
@@ -72,7 +89,7 @@ export class ModComponent implements OnInit {
 
         this.algoliaService.setTransaction(this.transact);
 
-        this.router.navigate(["/selectrecipients"]);
+        this.router.navigate(["/d/pick/selectrecipients"]);
 
         // publish event so list controller can refresh
         this.pubSubService.publish('transaction-updated');

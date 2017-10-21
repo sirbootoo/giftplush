@@ -45,7 +45,7 @@ export class ProductService {
     save(product: any) {
         let products = this.getProducts();
 
-        if (product.id) {
+        if (product.id) { 
             // update existing product
 
             for (var i = 0; i < products.length; i++) {
@@ -80,7 +80,7 @@ export class ProductService {
         this.setProducts(products);
     }
 
-    // private helper methods
+    // private helper methods 
 
     private getMerchants(): any[] { 
         if (!localStorage.getItem('merchants')) {

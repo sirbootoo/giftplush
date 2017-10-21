@@ -6,45 +6,8 @@
     <span>1</span> Select Gift Vouchers
   </h4>
   <div class="card-block">
-
-    <!--<div class="card-title">Where is the recipient located?</div>
-      <div class="row" id="picksearchLabels">
-      <div class="col-sm-6 col-xs-6 col-md-3">
-        <label for="searchstate">State</label>
-      </div>
-      <div class="col-sm-6 col-xs-6 col-md-3">
-        <label for="searchlga">L.G.A</label>
-      </div>
-      <div class="col-sm-12 col-xs-12 col-md-4 offset-md-2"></div>
-    </div>-->
-
-    <!--<div class="row" id="picksearch">
-      <div class="col-sm-6 col-xs-6 col-md-3">
-        <select name="searchstate" id="" class="custom-select">
-          <option value="" selected>Any State</option>
-          <option value="">Lagos</option>
-          <option value="">Abuja</option>
-        </select>
-      </div>
-      <div class="col-xs-6 col-sm-6 col-md-3 mb-2">
-        <select name="searchlga" id="" class="custom-select">
-          <option value="" selected>Any L.G.A</option>
-          <option value="">Ikeja</option>
-          <option value="">Surulere</option>
-        </select>
-      </div>
-      <div class="col-sm-12 col-xs-12 col-md-4 offset-md-2">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search for...">
-          <span class="input-group-btn">
-            <button class="btn btn-secondary" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
-          </span>
-        </div>
-      </div>
-    </div> -->
-
     <!-- List showing the merchants (brands) -->
-    <div class="row brandlist">
+    <div class="row brandlist" id="brands">
 
       <div class="card-block" [@slideUpDownAnimation]>
         <div class="row" id="picksearch">
@@ -60,10 +23,18 @@
 
         <!-- List showing the merchants (brands) -->
 
-          <div class="" id="hits">
-            <i class="fa fa-spinner fa-pulse fa-lg fa-fw"></i>
-            <span class="sr-only">Loading...</span>
+        <div class="row">
+          <div class="col-md-3 col-6 col-sm-6 hit" *ngFor="let hit of hitts | async">
+            <a class="acard" (click)="addDown(hit)" id="card{{hit.id}}">
+                <div class="card">
+                <img class="card-img-top img-fluid" src="{{hit.profile_img}}" alt="{{hit.company}} Gift Voucher">
+                <div class="card-block">
+                    <p class="card-text">{{hit.company}} Gift Voucher</p>
+                </div>
+                </div>
+            </a>
           </div>
+        </div>
 
         <!-- End List showing the merchants (brands) -->
       
@@ -74,17 +45,23 @@
       </div>
 
       <!-- Left And Right Sign For Pagination-->
-      <a href="" class="prev-btn"> <i class="fa fa-chevron-left" aria-hidden="true"></i> </a>
-      <a href="" class="next-btn"> <i class="fa fa-chevron-right" aria-hidden="true"></i> </a>
+      <!-- <a href="" class="prev-btn"> <i class="fa fa-chevron-left" aria-hidden="true"></i> </a>
+      <a href="" class="next-btn"> <i class="fa fa-chevron-right" aria-hidden="true"></i> </a> -->
 
     </div>
     <!-- End List showing the merchants (brands) -->
 
   </div>
 
-  <div class="card-bottom">
+  <div class="fadeOutt" *ngIf="selected" (click)="scroll(targ)">
+    <div class="arrow bounce">
+      <i class="fa fa-angle-down fa-5x" aria-hidden="true"></i>
+    </div>
+  </div>
+
+  <div class="card-bottom" #targ>
     <div class="row" id="lowerFiller">
-      <div class="col-md-2 col-xs-2 col-sm-2" *ngFor="let wishlistItem of wishlistItems">
+      <div class="col-4 col-sm-4 col-md-2" *ngFor="let wishlistItem of wishlistItems" >
         <div class="card">
           <img class="card-img-top img-fluid" src="{{wishlistItem.profile_img}}" alt="{{wishlistItem.merchantName}}">
           <span class="brandBtn" (click)="remove(wishlistItem.merchantId)">Remove</span>
@@ -92,7 +69,7 @@
       </div>
     </div>
 
-    <button type="button" class="btn btn-ModalBox float-right">Next</button>
+    <button type="button" class="btn btn-ModalBox float-right" (click)="next()">Next</button>
 
   </div>
 
@@ -115,6 +92,121 @@
     <span>4</span> Share Wishlist
   </h4>
 </div>
+
+<style>
+  .acard .card-block {
+    padding: 0em !important;
+  }
+  
+  @-moz-keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      -moz-transform: translateY(0);
+      transform: translateY(0);
+    }
+    40% {
+      -moz-transform: translateY(-30px);
+      transform: translateY(-30px);
+    }
+    60% {
+      -moz-transform: translateY(-15px);
+      transform: translateY(-15px);
+    }
+  }
+  @-webkit-keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      -webkit-transform: translateY(0);
+      transform: translateY(0);
+    }
+    40% {
+      -webkit-transform: translateY(-30px);
+      transform: translateY(-30px);
+    }
+    60% {
+      -webkit-transform: translateY(-15px);
+      transform: translateY(-15px);
+    }
+  }
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      -moz-transform: translateY(0);
+      -ms-transform: translateY(0);
+      -webkit-transform: translateY(0);
+      transform: translateY(0);
+    }
+    40% {
+      -moz-transform: translateY(-30px);
+      -ms-transform: translateY(-30px);
+      -webkit-transform: translateY(-30px);
+      transform: translateY(-30px);
+    }
+    60% {
+      -moz-transform: translateY(-15px);
+      -ms-transform: translateY(-15px);
+      -webkit-transform: translateY(-15px);
+      transform: translateY(-15px);
+    }
+  }
+  i {
+    display: block;
+    color: #fff;
+  }
+  .arrow {
+    position: fixed;
+    bottom: 50px;
+    z-index: 1009;
+    left: 50%;
+    margin-left: -20px;
+    width: 40px;
+    height: 60px; /*change with size of arrow to make sit on bottom */
+  /*   background-image: url(); */
+  /*   background-size: contain; */
+  }
+
+  .arrow i{
+    color: red;
+  }
+  
+  .bounce {
+    -moz-animation: bounce 2s infinite;
+    -webkit-animation: bounce 2s infinite;
+    animation: bounce 2s infinite;
+  }
+
+
+  .fadeOutt {
+    -webkit-animation: seconds 1.0s forwards;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-delay: 5s;
+    animation: seconds 1.0s forwards;
+    animation-iteration-count: 1;
+    animation-delay: 5s;
+    position: relative;
+    background: red;
+  }
+  @-webkit-keyframes seconds {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      left: -9999px; 
+    }
+  }
+  @keyframes seconds {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      left: -9999px; 
+    }
+  }
+  
+
+
+
+
+</style>
 
 
 
